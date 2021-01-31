@@ -9,7 +9,6 @@ import HeroPage from "./pages/HeroPage";
 import Error from "./pages/Error";
 
 const App = () => {
-
   return (
     <Router>
       <Switch>
