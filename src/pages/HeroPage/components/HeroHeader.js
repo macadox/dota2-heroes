@@ -1,5 +1,4 @@
 import React from "react";
-import { FaAsterisk } from "react-icons/fa";
 import agiIcon from "../../../assets/img/agi-big.jpg";
 import intIcon from "../../../assets/img/int-big.jpg";
 import strIcon from "../../../assets/img/str-big.jpg";
@@ -31,18 +30,7 @@ const HeroHeader = ({ hero }) => {
       </div>
       <h2 className='hero__name'>{hero.localized_name}</h2>
       <p className='hero__roles'>
-        {[hero.attack_type, ...hero.roles].map((r, i) => {
-          return (
-            <React.Fragment key={i}>
-              {r}
-              {i < hero.roles.length ? (
-                <FaAsterisk className='fa-asterisk' />
-              ) : (
-                ""
-              )}
-            </React.Fragment>
-          );
-        })}
+        {[hero.attack_type, ...hero.roles].join(", ")}
       </p>
     </div>
   );

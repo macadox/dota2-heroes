@@ -1,6 +1,6 @@
 import React from "react";
 
-const HeroPresenceTable = ({laneRoles}) => {
+const HeroPresenceTable = ({ laneRoles }) => {
   const lanesByRoles = [];
   let totalGames = 0;
 
@@ -12,29 +12,31 @@ const HeroPresenceTable = ({laneRoles}) => {
     lanesByRoles[lane_role - 1].push({ lane_role, games, wins, time });
   });
 
-  const finalRoles = lanesByRoles.map((arr) => {
-    const totals = arr.reduce((reducer, item) => {
-      const { lane_role, games, wins } = item;
-      // If key does not exist
-      totalGames += parseInt(games);
-      if (!reducer.lane_role) {
+  const finalRoles = lanesByRoles
+    .map((arr) => {
+      const totals = arr.reduce((reducer, item) => {
+        const { lane_role, games, wins } = item;
+        // If key does not exist
+        totalGames += parseInt(games);
+        if (!reducer.lane_role) {
+          return {
+            lane_role,
+            games: parseInt(games),
+            wins: parseInt(wins),
+            time: Infinity,
+          };
+        }
         return {
-          lane_role,
-          games: parseInt(games),
-          wins: parseInt(wins),
-          time: Infinity,
+          ...reducer,
+          games: parseInt(reducer.games) + parseInt(games),
+          wins: parseInt(reducer.wins) + parseInt(wins),
         };
-      }
-      return {
-        ...reducer,
-        games: parseInt(reducer.games) + parseInt(games),
-        wins: parseInt(reducer.wins) + parseInt(wins),
-      };
-    }, {});
-    return [...arr, totals];
-  });
+      }, {});
+      return [...arr, totals];
+    })
+    .sort((a, b) => b[b.length - 1].games - a[a.length - 1].games);
 
-  return (
+    return (
     <table>
       <tbody>
         <tr>
@@ -49,7 +51,7 @@ const HeroPresenceTable = ({laneRoles}) => {
         </tr>
         {finalRoles.map((role, index) => {
           const { lane_role } = role[0];
-          const games = role[5].games;
+          const games = role[role.length - 1].games;
 
           if (games / totalGames < 0.04) {
             return;

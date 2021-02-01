@@ -8,7 +8,7 @@ const HeroLore = ({ heroLore, hero }) => {
     .split(" ")
     .reduce((reducer, word, index) => {
       if (reducer.length === 0) return [[word], []];
-      if (index <= 75) {
+      if (index <= 100) {
         reducer[0] = reducer[0].concat(word);
       } else {
         reducer[1] = reducer[1].concat(word);

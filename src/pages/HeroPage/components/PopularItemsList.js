@@ -28,7 +28,6 @@ const PopularItemsList = ({ itemPopularity, items, itemIds }) => {
         .sort((a, b) => (a.popularity < b.popularity ? 1 : -1))
         .splice(6);
     });
-
     const ordered = [
       tempResults.start_game_items,
       tempResults.early_game_items,
@@ -39,11 +38,12 @@ const PopularItemsList = ({ itemPopularity, items, itemIds }) => {
     setIsMounted(true);
   }, []);
 
-  if (!isMounted) return <> </>;
+  if (!isMounted) return <></>;
 
   return (
     <div className='hero__items-inner'>
       {results.map((stage, index) => {
+        console.log(stage);
         return (
           <div className='stage' key={index}>
             <h4 className='stage__label'>

@@ -101,46 +101,43 @@ const HeroPage = () => {
         Back
       </Link>
       <div className='hero'>
-        {/* <div className='hero__left'> */}
-        <div className='hero__main'>
+        <article className='hero__main'>
           <HeroHeader hero={hero} />
           <HeroAbilities
             heroAbilities={heroesAbilities[hero.name]}
             abilities={abilities}
           />
+          <h3>Hero Stats</h3>
           <HeroStats hero={hero} />
-        </div>
-        <div className='hero__lane-roles'>
+        </article>
+        <article className='hero__lane-roles'>
           <h3>Lane presence</h3>
           <HeroPresenceTable laneRoles={data.laneRoles} />
-        </div>
-        <div className='hero__averages'>
+        </article>
+        <article className='hero__averages'>
           <h3>Average results</h3>
           <AverageResultsTable benchmark={data.benchmarks.result} />
-        </div>
-        {/* </div> */}
-        {/* <div className='hero__right'> */}
-        <div className='hero__items'>
+        </article>
+        <article className='hero__items'>
           <h3>Popular items</h3>
           <PopularItemsList
             itemPopularity={data.itemPopularity}
             items={items}
             itemIds={itemIds}
           />
-        </div>
-        <div className='hero__matchups hero__matchups--best'>
+        </article>
+        <article className='hero__matchups hero__matchups--best'>
           <h3>Best against</h3>
           <HeroMatchups matchupList={mappedMatchups.slice(0, 8)} />
-        </div>
-        <div className='hero__matchups hero__matchups--worst'>
+        </article>
+        <article className='hero__matchups hero__matchups--worst'>
           <h3>Worst against</h3>
           <HeroMatchups matchupList={mappedMatchups.slice(-8).reverse()} />
-        </div>
-        <div className='hero__lore'>
+        </article>
+        <article className='hero__lore'>
           <h3>Hero lore</h3>
           <HeroLore heroLore={heroLore} hero={hero} />
-        </div>
-        {/* </div> */}
+        </article>
       </div>
     </section>
   );

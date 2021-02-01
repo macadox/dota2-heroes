@@ -5,10 +5,13 @@
 
 :root {
   --bcg-clr: #15181c;
-  --font-clr:  rgba(164, 167, 171, 0.88);
+  --section-clr: #242f39;
+  --font-clr: rgba(164, 167, 171, 0.88);
+  --font-clr-light: rgba(203, 205, 211, 0.88);
   --border-clr: #404447;
   --border-clr-light: #8e8a88;
-  --btn-bcg: #252D34;
+  --border-clr-dark: #0c0d0e;
+  --btn-bcg: #252d34;
   --focus-clr: #64676a;
 
   --agi-clr: #3a7d33;
@@ -18,7 +21,7 @@
   --table-bcg: #252d35;
   --table-dark: rgb(26, 32, 36);
   --table-light: #252d35;
-  --table-text: rgba(217, 207, 197, 0.85);
+  --table-text: rgba(203, 196, 189, 0.775);
 }
 
 /* background: #191516;
@@ -60,12 +63,17 @@ h4 {
 .btn {
   background: var(--btn-bcg);
   display: inline-block;
-  margin: 1em 2em 2em;
+  margin: 1em 2em;
   text-decoration: none;
   color: var(--font-clr);
   padding: 0.4em 1em;
   font-size: 1.4em;
-  border-bottom: 1px solid var(--border-clr);
+  border-bottom: 2px solid var(--border-clr-dark);
+  transition: 0.15s ease-in-out;
+}
+
+.btn:hover {
+  background-color: var(--table-dark);
 }
 
 .section--heroes {
@@ -133,9 +141,8 @@ h4 {
   color: var(--font-clr);
 }
 
-.hero__left > * + *,
-.hero__right > * + * {
-  margin-top: 2em;
+.hero__main {
+  margin: 2em 0 0;
 }
 
 .hero__img-container {
@@ -143,6 +150,7 @@ h4 {
   width: 100%;
   border-radius: 4px;
   max-width: 280px;
+  margin: 0 auto;
 }
 
 .hero__portrait {
@@ -163,15 +171,17 @@ h4 {
 .section--hero h3 {
   text-transform: uppercase;
   font-weight: 400;
-  margin-bottom: 0.5em;
-  margin-top: 0.5em;
+  margin-bottom: 1em;
+  margin-top: 1em;
   text-align: center;
 }
 
 .hero__name {
   text-align: center;
-  line-height: 95%;
+  line-height: 110%;
+  padding: 0.15em 0;
   font-weight: 400;
+  color: var(--font-clr-light);
 }
 
 .hero__roles {
@@ -182,25 +192,18 @@ h4 {
   padding-right: 1em;
 }
 
-.fa-asterisk {
-  font-size: 1rem;
-  margin-left: 0.25em;
-  margin-right: 0.25em;
-}
-
 .hero__abilities {
   display: grid;
   width: 100%;
   grid-template-columns: repeat(auto-fit, minmax(48px, 1fr));
   justify-content: space-between;
-  margin-top: 2em;
-  margin-bottom: 2em;
+  margin: 2em auto;
   gap: 1em;
   max-width: 280px;
 }
 
 .hero__ability {
-  max-width: 90px;
+  max-width: 100px;
   outline: none;
   position: relative;
   height: 100%;
@@ -219,6 +222,7 @@ h4 {
 .hero__stats {
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
 }
 
 .stats {
@@ -227,10 +231,10 @@ h4 {
 
 .stats--main {
   justify-content: space-around;
+  margin-bottom: 2em;
 }
 
 .stats--sec {
-  margin-top: 3.2em;
   justify-content: space-evenly;
 }
 
@@ -279,6 +283,57 @@ h4 {
   /* color: #3a4fa4; */
 }
 
+@media (min-width: 640px) {
+  .section--hero {
+    padding: 1em 3em;
+    border: 2px solid var(--border-clr-dark);
+    margin: 3em;
+    box-shadow: 0 0 8px 3px rgb(13, 14, 14);
+  }
+
+  section > article {
+    max-width: 420px;
+    width: 100%;
+  }
+
+  .hero__main {
+    width: 100%;
+  }
+
+  h2 {
+    font-size: 4.8rem;
+  }
+
+  .hero__roles {
+    font-size: 1.6rem;
+  }
+
+  .hero__abilities {
+    grid-template-columns: repeat(auto-fit, minmax(56px, 1fr));
+    max-width: 420px;
+    margin: 2em auto;
+    padding: 0 1em;
+  }
+
+  .hero__stats {
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .stat {
+    width: 66px;
+  }
+
+  .stat__value {
+    font-size: 1.8rem;
+  }
+
+  .stat__gain {
+    font-size: 1.2rem;
+    transform: translateX(-3px);
+  }
+}
+
 table {
   text-align: center;
   border-spacing: 0;
@@ -325,6 +380,7 @@ th {
   min-width: min-content;
   padding-top: 0.25em;
   padding-bottom: 0.25em;
+  color: var(--font-clr-light);
 }
 
 th + th {
@@ -350,10 +406,19 @@ td {
   display: inline-block;
 }
 
+@media (min-width: 640px) {
+  .stats--sec table {
+    width: 80%;
+  }
+}
+
+.hero__items h3 {
+  margin-bottom: 0.5em;
+}
+
 .hero__items-inner {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2em;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   width: 100%;
   margin: 0 auto;
 }
@@ -361,14 +426,15 @@ td {
 .stage__label {
   text-align: center;
   text-transform: uppercase;
-  margin-bottom: 1em;
+  margin: 0.5em 0;
+  font-weight: 400;
 }
 
 .stage__items {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  max-width: 220px;
+  max-width: 240px;
   margin: 0 auto;
 }
 
@@ -471,6 +537,13 @@ td {
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.85), 0 0 0 4px #64676a;
 }
 
+@media (min-width: 640px) {
+  .hero__items {
+    max-width: none;
+    width: 100%;
+  }
+}
+
 /* MATCHUPS */
 
 .matchups {
@@ -494,6 +567,17 @@ td {
 
 .matchup__hero:focus {
   box-shadow: 0 0 0 2px #64676a;
+}
+
+@media (min-width: 640px) {
+  .matchups {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+
+  .hero__matchups {
+    max-width: none;
+  }
 }
 
 /* LORE */
@@ -531,4 +615,98 @@ td {
 
 .lore__more {
   display: none;
+}
+
+@media (min-width: 640px) {
+  .hero__lore {
+    max-width: none;
+  }
+
+  .lore {
+    font-size: 1.6rem;
+  }
+
+  .lore__show-more {
+    margin: 0.5em auto;
+  }
+}
+
+/* DESKTOP */
+
+@media (min-width: 1024px) {
+  .section--hero {
+    padding: 1em 3em;
+    border: none;
+    margin: 0;
+    box-shadow: none;
+    max-width: 1280px;
+  }
+
+  .section--hero h3 {
+    margin: 0.35em 0 0.5em;
+  }
+
+  article {
+    padding: 0.65em;
+    background: var(--table-light);
+  }
+
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr 1.1fr;
+    grid-template-rows: repeat(5, min-content);
+    gap: 1.2em;
+    align-items: center;
+  }
+
+  .hero__main {
+    grid-row: 1 / 4;
+    grid-column: 1 / 2;
+    margin: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .hero__lane-roles {
+    grid-column: 2 / -1;
+    padding: 0 0.65em;
+    height: 100%;
+  }
+
+  .hero__averages {
+    grid-column: 2 / -1;
+    padding: 0 0.65em;
+    height: 100%;
+  }
+
+  .hero__items {
+    grid-row: 4/6;
+  }
+
+  table {
+    padding: 0;
+    width: 100%;
+    border: 1px solid var(--table-dark);
+    box-shadow: 0 0 4px 2px rgba(13, 14, 14, 0.122);
+  }
+
+  .stats--sec table {
+    width: 100%;
+  }
+
+  .hero__matchups {
+    height: 100%;
+  }
+
+  .matchups {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  }
+
+  .hero__lore {
+    grid-column: 2 / -1;
+    padding: 0.65em 1.3em;
+  }
 }

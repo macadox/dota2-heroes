@@ -11,7 +11,6 @@ const AverageResultsTable = ({ benchmark }) => {
     "tower_damage",
   ];
   const topPlayers = [90, 80, 70, 60, 50, 40, 30, 20, 10, 5, 1].reverse();
-  console.log(benchmark);
   return (
     <table>
       <tbody>
@@ -30,7 +29,7 @@ const AverageResultsTable = ({ benchmark }) => {
             <tr key={index}>
               <th>{perc}%</th>
               {keys.map((key, i) => {
-                const val = benchmark[key][index].value;
+                const val = benchmark[key][keys.length + 3 - index].value;
 
                 return <td key={i}>{Math.round(val * 100) / 100}</td>;
               })}
