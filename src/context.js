@@ -37,42 +37,39 @@ const resources = [
 
 export const AppProvider = ({ children }) => {
   const [term, setTerm] = useState("");
+  const [filters, setFilters] = useState([]);
+  const [sort, setSort] = useState("");
+  const [asc, setAsc] = useState(true);
   const [loading, data] = useFetch(resources);
-
   const [filteredHeroes, setFilteredHeroes] = useState([]);
+  console.log(sort);
   const type = (val) => {
     setTerm(val);
   };
 
-  //   useEffect(() => {
-  //     const fetchHeroes = async () => {
-  //       setLoading(true);
-  //       try {
-  //         console.log("Fetching constant data...");
-  //         const response = await fetch(
-  //           `${API_URI}/heroStats/?api_key=${API_KEY}`
-  //         );
-  //         const data = await response.json();
+  const handleSort = (value) => {
+    setSort(value);
+  };
 
-  //         setHeroes(data);
-  //         setFilteredHeroes(data);
-  //         setLoading(false);
-  //       } catch (e) {
-  //         console.log(e);
-  //         setLoading(false);
-  //       }
-  //     };
+  const handleFilter = (value) => {
+    console.log("setting filters to: ", value);
+  };
 
-  //     fetchHeroes();
-  //   }, []);
+  // useEffect(() => {
+  //   const sortedHeroes = filteredHeroes.sort((a, b) => {
+
+  //   setTimeout(() => {
+  //     setFilteredHeroes(sortedHeroes);
+  //   }, 1000);
+  // }, [sort, filteredHeroes]);
 
   useEffect(() => {
-    // console.log("useeffect inside context ran");
     if (data) {
       setFilteredHeroes(data.heroes);
     }
   }, [data]);
-  // console.log(filteredHeroes);
+
+  console.log(filteredHeroes);
 
   return (
     <AppContext.Provider
@@ -82,6 +79,8 @@ export const AppProvider = ({ children }) => {
         API_KEY,
         term,
         loading,
+        sort,
+        asc,
         heroes: data && data.heroes,
         heroesAbilities: data && data.heroAbilities,
         heroLore: data && data.heroLore,
@@ -90,6 +89,8 @@ export const AppProvider = ({ children }) => {
         itemIds: data && data.itemIds,
         filteredHeroes,
         type,
+        handleSort,
+        handleFilter,
       }}
     >
       {children}

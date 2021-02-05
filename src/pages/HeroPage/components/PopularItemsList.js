@@ -43,7 +43,6 @@ const PopularItemsList = ({ itemPopularity, items, itemIds }) => {
   return (
     <div className='hero__items-inner'>
       {results.map((stage, index) => {
-        console.log(stage);
         return (
           <div className='stage' key={index}>
             <h4 className='stage__label'>

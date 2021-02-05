@@ -5,11 +5,9 @@ import { useGlobalContext } from "../../../context";
 
 const HeroAbilities = ({ heroAbilities, abilities }) => {
   const { CDN_URI } = useGlobalContext();
-  console.log(heroAbilities.abilities);
   const mappedAbilities = heroAbilities.abilities.map((a) => {
     return abilities[a];
   });
-  // console.log(mappedAbilities);
 
   return (
     <div className='hero__abilities'>

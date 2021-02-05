@@ -4,12 +4,27 @@ import Hero from "./Hero";
 import { useGlobalContext } from "../context";
 
 const HeroesList = () => {
-    const { filteredHeroes } = useGlobalContext();
-  const slugRegex = new RegExp(/(?<=npc_dota_hero_)\w+/, "");
+  const { heroes, sort, asc } = useGlobalContext();
+
+  const sortList = () => {
+    const sortedHeroes = heroes.sort((a, b) => {
+      if (asc) {
+        if (b[sort] < a[sort]) return 1;
+        else return -1;
+      } else {
+        if (b[sort] < a[sort]) return -1;
+        else return 1;
+      }
+    });
+
+    return sortedHeroes;
+  };
+
+  const filterList = () => {};
 
   return (
     <ul className='hero-list'>
-      {filteredHeroes.map((h) => {
+      {sortList(heroes).map((h) => {
         const { id, localized_name, primary_attr, img } = h;
 
         return (

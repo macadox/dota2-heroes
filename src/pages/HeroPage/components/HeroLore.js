@@ -25,7 +25,7 @@ const HeroLore = ({ heroLore, hero }) => {
         <span className='lore__dots'>...</span>
         <span className='lore__more'>{part2}</span>
       </p>
-      <button className='lore__show-more'>Show More</button>
+      <button className='lore__show-more btn--alt'>Show More</button>
     </div>
   );
 };
