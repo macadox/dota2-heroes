@@ -5,7 +5,7 @@ export const useFetch = (objs, id) => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
   useEffect(() => {
-    console.log("fecthing", objs);
+    // console.log("fecthing", objs);
     const fetchData = async () => {
       setLoading(true);
       try {
@@ -33,6 +33,5 @@ export const useFetch = (objs, id) => {
     fetchData();
   }, [id]);
 
-  console.log(loading, data);
   return [loading, data];
 };

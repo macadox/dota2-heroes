@@ -3,15 +3,22 @@ import Option from "../components/Option";
 
 import { FaCaretDown } from "react-icons/fa";
 
-const SingleListbox = ({ defaultText, options = [], callback }) => {
-  const [value, setValue] = useState("");
+const FilterListbox = ({ defaultText, options = [], callback, active }) => {
+  const [values, setValues] = useState(
+    active ? [...options.map((o) => o.value)] : []
+  );
   const [open, setOpen] = useState(false);
-  const [label, setLabel] = useState("");
   const listboxRef = useRef(null);
 
   const handleClick = (value) => {
-    setValue(value);
-    setOpen(false);
+    let newValues = [...values];
+    if (values.includes(value)) {
+      const index = values.indexOf(value);
+      newValues.splice(index, 1);
+    } else {
+      newValues.push(value);
+    }
+    setValues(newValues);
   };
 
   const handleClickOutside = (e) => {
@@ -21,18 +28,13 @@ const SingleListbox = ({ defaultText, options = [], callback }) => {
   };
 
   useEffect(() => {
-    const option = options.find((option) => option.value === value);
-
-    if (option) {
-      setLabel(option.label);
-    }
-  }, [value]);
-
-  useEffect(() => {
     if (callback) {
-      callback(value);
+      callback(
+        values,
+        options.map((o) => o.value)
+      );
     }
-  }, [value]);
+  }, [values]);
 
   useEffect(() => {
     document.addEventListener("click", handleClickOutside);
@@ -42,9 +44,12 @@ const SingleListbox = ({ defaultText, options = [], callback }) => {
   }, []);
 
   return (
-    <div className='listbox listbox--single' ref={listboxRef}>
+    <div className='listbox listbox--multi' ref={listboxRef}>
       <button onClick={() => setOpen(!open)} className='listbox__button'>
-        {label || defaultText}
+        {options
+          .filter((o) => values.includes(o.value))
+          .map((o) => o.label)
+          .join(", ") || defaultText}{" "}
         <FaCaretDown className='listbox__caret' />
       </button>
       {open && (
@@ -53,10 +58,10 @@ const SingleListbox = ({ defaultText, options = [], callback }) => {
             return (
               <Option
                 key={option.value}
-                selected={value === option.value}
                 onClick={handleClick}
                 option={option}
-                isMultiselect={false}
+                selected={values.includes(option.value)}
+                isMultiselect={true}
               />
             );
           })}
@@ -66,4 +71,4 @@ const SingleListbox = ({ defaultText, options = [], callback }) => {
   );
 };
 
-export default SingleListbox;
+export default FilterListbox;

@@ -1,5 +1,5 @@
 import React from "react";
-import {FaCheck} from 'react-icons/fa'
+import { FaCheck } from "react-icons/fa";
 
 const Option = ({ option, onClick, selected, isMultiselect }) => {
   const { label, value } = option;
@@ -8,11 +8,10 @@ const Option = ({ option, onClick, selected, isMultiselect }) => {
       className={`listbox__option ${
         selected ? "listbox__option--selected" : ""
       }`}
-      onClick={() => onClick(value)}
+      onClick={(e) => onClick(value, e.target)}
     >
       {label}
-      {(isMultiselect && selected) && <FaCheck className="listbox__check"/>}
-      
+      {isMultiselect && selected && <FaCheck className='listbox__check' />}
     </li>
   );
 };

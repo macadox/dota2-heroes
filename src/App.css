@@ -110,14 +110,27 @@ h5 {
 
 .hero-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   grid-gap: 1.4em;
   list-style: none;
   margin: 0 auto;
+  border-radius: 2px;
+  border: 2px solid var(--border-clr-dark);
+  box-shadow: 0 0 8px 3px rgb(13, 14, 14);
+  padding: 0.65em;
+  justify-items: center;
+}
+
+.hero-list__error {
+  color: var(--table-text);
+  font-size: 1.6rem;
+  padding: 0.65em;
+  text-align: center;
 }
 
 .card {
   width: 100%;
+  max-width: 33vw;
   transition: 0.15s ease-in-out;
   outline: none;
   position: relative;
@@ -145,7 +158,7 @@ h5 {
 }
 
 .card__title {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   line-height: 95%;
   color: var(--font-clr);
   text-decoration: none;
@@ -153,10 +166,9 @@ h5 {
 
 @media (min-width: 1024px) {
   .hero-list {
-    background-color: var(--table-light);
-    max-width: 1280px;
+    /* background-color: var(--table-light); */
+    max-width: 1024px;
     padding: 0.65em;
-    box-shadow: 0 0 8px 3px rgb(13, 14, 14);
   }
 }
 
@@ -625,17 +637,9 @@ td {
   position: relative;
 }
 
-.lore__more {
-  display: none;
-}
-
 @media (min-width: 640px) {
   .hero__lore {
     max-width: none;
-  }
-
-  .lore {
-    font-size: 1.6rem;
   }
 
   .lore__show-more {
@@ -660,7 +664,10 @@ td {
 
   article {
     padding: 0.65em;
-    background: var(--table-light);
+    /* background: var(--table-light); */
+
+    border: 2px solid var(--border-clr-dark);
+    box-shadow: 0 0 8px 3px rgb(13, 14, 14);
   }
 
   .hero {
@@ -740,9 +747,17 @@ body {
 
 .loader {
   display: flex;
+  flex-direction: column;
   flex: 1;
   justify-content: center;
   align-items: center;
+}
+
+.loader__text {
+  display: block;
+  margin-top: 0.5em;
+  color: rgba(203, 205, 211, 0.88);
+  opacity: 0.6;
 }
 
 /* FILTER */
@@ -805,6 +820,12 @@ body {
 
 .search__input:focus {
   border-color: var(--focus-clr);
+}
+
+@media (min-width: 1024px) {
+  .search {
+    max-width: 50%;
+  }
 }
 
 /* LISTBOX */
@@ -873,14 +894,25 @@ body {
   align-items: flex-start;
 }
 
+.filters__inner--hidden {
+  display: none;
+}
+
+.filters__inner-center {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65em;
+}
+
 .filters > * + * {
   margin-top: 0.65em;
 }
 
 @media (min-width: 1024px) {
   .filters-wrap {
-    width: 540px;
-    align-self: center;
+    max-width: 1024px;
+    margin: 0 auto;
   }
 
   .filters__inner {
@@ -888,12 +920,7 @@ body {
   }
 
   .filters__inner-center {
-    grid-column: 1 / -1;
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    align-items: center;
-    gap: 0.65em;
-    justify-items: start;
+    align-items: flex-start;
   }
 }

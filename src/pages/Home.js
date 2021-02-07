@@ -2,83 +2,103 @@ import React, { useState } from "react";
 import HeroesList from "../components/HeroesList";
 import Loading from "../components/Loading";
 import SearchBar from "../components/SearchBar";
-import MultiListbox from "../components/MultiListbox";
-import SingleListbox from "../components/SingleListbox";
+import FilterListbox from "../components/FilterListbox";
+import SortListbox from "../components/SortListbox";
 import { useGlobalContext } from "../context";
 
 const Home = () => {
-  const { loading, handleSort, handleFilter } = useGlobalContext();
-  const [showAdvanced, setShowAdvanced] = useState(false);
+  const {
+    loading,
+    handleSort,
+    handleAttributeFilter,
+    handleRangeFilter,
+    handleRoleFilter,
+    toggleReverse,
+    reverse,
+  } = useGlobalContext();
+  const [showFilters, setShowFilters] = useState(false);
 
   return (
     <>
       <h1 className='app-title'>Dota 2 - Hero info</h1>
-      <div className='filters-wrap'>
-        <h4>Filter heroes</h4>
-        <div className='search'>
-          <SearchBar />
-        </div>
-        <div className='filters'>
-          <div className='filters__sort'>
-            <h5>Sort data</h5>
-            <SingleListbox
-              defaultText='Sort by'
-              options={[
-                { label: "ID", value: "id" },
-                { label: "Move speed", value: "move_speed" },
-                { label: "Name", value: "localized_name" },
-              ]}
-              callback={handleSort}
-            />
+      <section className='filters-main'>
+        <div className='filters-wrap'>
+          <h4>Filter heroes</h4>
+          <div className='search'>
+            <SearchBar />
           </div>
-          {showAdvanced && (
-            <div className='filters__inner'>
+          <div className='filters'>
+            <div className='filters__sort'>
+              <h5>Sort data</h5>
+              <SortListbox
+                defaultText='Sort by'
+                options={[
+                  { label: "Name", value: "localized_name" },
+                  { label: "ID", value: "id" },
+                  { label: "Attack range", value: "attack_range" },
+                  { label: "Move speed", value: "move_speed" },
+                  { label: "Attack rate", value: "attack_rate" },
+                  { label: "Turn rate", value: "turn_rate" },
+                ]}
+                callback={handleSort}
+                toggleReverse={toggleReverse}
+                reverse={reverse}
+              />
+            </div>
+            <div
+              className={`filters__inner ${
+                !showFilters ? "filters__inner--hidden" : ""
+              }`}
+            >
               <h5>Filter data</h5>
               <div className='filters__inner-center'>
-                <MultiListbox
-                  defaultText='Attribute'
+                <FilterListbox
+                  defaultText='Attributes'
                   options={[
                     { label: "Agility", value: "agi" },
                     { label: "Strength", value: "str" },
                     { label: "Intelligence", value: "int" },
                   ]}
-                  callback={handleFilter}
+                  callback={handleAttributeFilter}
+                  active={true}
                 />
-                <MultiListbox
+                <FilterListbox
                   defaultText='Range'
                   options={[
-                    { label: "Melee", value: "melee" },
-                    { label: "Ranged", value: "ranged" },
+                    { label: "Melee", value: "Melee" },
+                    { label: "Ranged", value: "Ranged" },
                   ]}
-                  callback={handleFilter}
+                  callback={handleRangeFilter}
+                  active={true}
                 />
-                <MultiListbox
-                  defaultText='Range'
+                <FilterListbox
+                  defaultText='Roles'
                   options={[
-                    { label: "Melee", value: "melee" },
-                    { label: "Ranged", value: "ranged" },
+                    { label: "Carry", value: "Carry" },
+                    { label: "Disabler", value: "Disabler" },
+                    { label: "Durable", value: "Durable" },
+                    { label: "Escape", value: "Escape" },
+                    { label: "Initiator", value: "Initiator" },
+                    { label: "Jungler", value: "Jungler" },
+                    { label: "Nuker", value: "Nuker" },
+                    { label: "Pusher", value: "Pusher" },
+                    { label: "Support", value: "Support" },
                   ]}
-                  callback={handleFilter}
-                />
-                <MultiListbox
-                  defaultText='Range'
-                  options={[
-                    { label: "Melee", value: "melee" },
-                    { label: "Ranged", value: "ranged" },
-                  ]}
-                  callback={handleFilter}
+                  callback={handleRoleFilter}
+                  active={false}
                 />
               </div>
             </div>
-          )}
+          </div>
+          <button
+            onClick={() => setShowFilters(!showFilters)}
+            className='btn--alt filters__advanced'
+          >
+            {showFilters ? "hide filters" : "show filters"}
+          </button>
         </div>
-        <button
-          onClick={() => setShowAdvanced(!showAdvanced)}
-          className='btn--alt filters__advanced'
-        >
-          {showAdvanced ? "hide advanced" : "show advanced"}
-        </button>
-      </div>
+      </section>
+
       {loading ? (
         <Loading />
       ) : (

@@ -3,20 +3,23 @@ import Option from "../components/Option";
 
 import { FaCaretDown } from "react-icons/fa";
 
-const MultiListbox = ({ defaultText, options = [], callback }) => {
-  const [values, setValues] = useState([]);
+const SortListbox = ({
+  defaultText,
+  options = [],
+  callback,
+  reverse,
+  toggleReverse,
+}) => {
+  const [value, setValue] = useState("localized_name");
   const [open, setOpen] = useState(false);
+  const [label, setLabel] = useState("");
   const listboxRef = useRef(null);
 
-  const handleClick = (value) => {
-    let newValues = [...values];
-    if (values.includes(value)) {
-      const index = values.indexOf(value);
-      newValues.splice(index, 1);
-    } else {
-      newValues.push(value);
-    }
-    setValues(newValues);
+  const handleClick = (value, target) => {
+    setValue(value);
+    setOpen(false);
+
+    toggleReverse(target);
   };
 
   const handleClickOutside = (e) => {
@@ -26,10 +29,18 @@ const MultiListbox = ({ defaultText, options = [], callback }) => {
   };
 
   useEffect(() => {
-    if (callback) {
-      callback(values);
+    const option = options.find((option) => option.value === value);
+
+    if (option) {
+      setLabel(option.label);
     }
-  }, [values]);
+  }, [value]);
+
+  useEffect(() => {
+    if (callback) {
+      callback(value);
+    }
+  }, [value]);
 
   useEffect(() => {
     document.addEventListener("click", handleClickOutside);
@@ -37,11 +48,12 @@ const MultiListbox = ({ defaultText, options = [], callback }) => {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
-  
+
   return (
-    <div className='listbox listbox--multi' ref={listboxRef}>
+    <div className='listbox listbox--single' ref={listboxRef}>
       <button onClick={() => setOpen(!open)} className='listbox__button'>
-        {defaultText} <FaCaretDown className='listbox__caret' />
+        {label || defaultText} {reverse ? "(desc)" : "(asc)"}
+        <FaCaretDown className='listbox__caret' />
       </button>
       {open && (
         <ul className='listbox__list'>
@@ -49,10 +61,10 @@ const MultiListbox = ({ defaultText, options = [], callback }) => {
             return (
               <Option
                 key={option.value}
+                selected={value === option.value}
                 onClick={handleClick}
                 option={option}
-                selected={values.includes(option.value)}
-                isMultiselect={true}
+                isMultiselect={false}
               />
             );
           })}
@@ -62,4 +74,4 @@ const MultiListbox = ({ defaultText, options = [], callback }) => {
   );
 };
 
-export default MultiListbox;
+export default SortListbox;

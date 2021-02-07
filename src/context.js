@@ -37,12 +37,15 @@ const resources = [
 
 export const AppProvider = ({ children }) => {
   const [term, setTerm] = useState("");
-  const [filters, setFilters] = useState([]);
+  const [attributeFilter, setAttributeFilter] = useState([]);
+  const [rangeFilter, setRangeFilter] = useState([]);
+  const [roleFilter, setRoleFilter] = useState([]);
   const [sort, setSort] = useState("");
-  const [asc, setAsc] = useState(true);
+  const [reverse, setReverse] = useState(false);
   const [loading, data] = useFetch(resources);
-  const [filteredHeroes, setFilteredHeroes] = useState([]);
-  console.log(sort);
+
+  // console.log({ attributeFilter, rangeFilter, roleFilter });
+
   const type = (val) => {
     setTerm(val);
   };
@@ -51,25 +54,27 @@ export const AppProvider = ({ children }) => {
     setSort(value);
   };
 
-  const handleFilter = (value) => {
-    console.log("setting filters to: ", value);
+  const handleAttributeFilter = (values) => {
+    setAttributeFilter(values);
   };
 
-  // useEffect(() => {
-  //   const sortedHeroes = filteredHeroes.sort((a, b) => {
+  const handleRangeFilter = (values) => {
+    setRangeFilter(values);
+  };
 
-  //   setTimeout(() => {
-  //     setFilteredHeroes(sortedHeroes);
-  //   }, 1000);
-  // }, [sort, filteredHeroes]);
+  const handleRoleFilter = (values) => {
+    setRoleFilter(values);
+  };
 
-  useEffect(() => {
-    if (data) {
-      setFilteredHeroes(data.heroes);
+  const toggleReverse = (target) => {
+    if (target.classList.contains("listbox__option--selected")) {
+      setReverse(!reverse);
+    } else {
+      setReverse(false);
     }
-  }, [data]);
+  };
 
-  console.log(filteredHeroes);
+  // console.log(data && data.heroes);
 
   return (
     <AppContext.Provider
@@ -80,17 +85,22 @@ export const AppProvider = ({ children }) => {
         term,
         loading,
         sort,
-        asc,
+        reverse,
+        attributeFilter,
+        rangeFilter,
+        roleFilter,
         heroes: data && data.heroes,
         heroesAbilities: data && data.heroAbilities,
         heroLore: data && data.heroLore,
         abilities: data && data.abilities,
         items: data && data.items,
         itemIds: data && data.itemIds,
-        filteredHeroes,
         type,
         handleSort,
-        handleFilter,
+        handleAttributeFilter,
+        handleRangeFilter,
+        handleRoleFilter,
+        toggleReverse,
       }}
     >
       {children}
