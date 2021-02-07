@@ -5,7 +5,9 @@
 ## Demo
 
 ## What I've learned
-
+Forwarding ref
+creating custom hooks
+asynchronous fetching of data using reacts useEffect hook
 ## Todos
 
 ### New
@@ -16,3 +18,4 @@
 - Add Error page: "Something went wrong" [ ]
 
 ### Completed
+
