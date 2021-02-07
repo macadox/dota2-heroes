@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-
-import { useGlobalContext } from "../../../context";
+import Item from './Item'
 
 const PopularItemsList = ({ itemPopularity, items, itemIds }) => {
-  const { CDN_URI } = useGlobalContext();
   const [results, setResults] = useState({});
   const [isMounted, setIsMounted] = useState(false);
 
@@ -37,7 +35,6 @@ const PopularItemsList = ({ itemPopularity, items, itemIds }) => {
     setResults(ordered);
     setIsMounted(true);
   }, []);
-
   if (!isMounted) return <></>;
 
   return (
@@ -56,16 +53,7 @@ const PopularItemsList = ({ itemPopularity, items, itemIds }) => {
             </h4>
             <div className='stage__items'>
               {stage.map((item) => {
-                const { id, img, name, quality } = item;
-                return (
-                  <div className={`item item--${quality}`} key={id}>
-                    <img
-                      src={`${CDN_URI}${img}`}
-                      alt={name}
-                      className='item__img'
-                    />
-                  </div>
-                );
+                return <Item key={item.id} item={item} />;
               })}
             </div>
           </div>

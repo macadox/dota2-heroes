@@ -1,10 +1,7 @@
 import React from "react";
-import { useGlobalContext } from "../../../context";
-
-// TODO: Add tooltips on abilities.
+import Ability from "./Ability";
 
 const HeroAbilities = ({ heroAbilities, abilities }) => {
-  const { CDN_URI } = useGlobalContext();
   const mappedAbilities = heroAbilities.abilities.map((a) => {
     return abilities[a];
   });
@@ -13,16 +10,7 @@ const HeroAbilities = ({ heroAbilities, abilities }) => {
     <div className='hero__abilities'>
       {mappedAbilities.map((ability) => {
         if (!ability.dname) return;
-        return (
-          <div className='hero__ability' key={ability.dname}>
-            <img
-              src={`${CDN_URI}${ability.img}`}
-              alt={ability.dname}
-              className='hero__ability-img'
-            />
-            {/* Tooltip also */}
-          </div>
-        );
+        return <Ability ability={ability} key={ability.dname} />;
       })}
     </div>
   );
