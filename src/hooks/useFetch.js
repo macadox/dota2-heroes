@@ -5,7 +5,6 @@ export const useFetch = (objs, id) => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
   useEffect(() => {
-    // console.log("fecthing", objs);
     const fetchData = async () => {
       setLoading(true);
       try {

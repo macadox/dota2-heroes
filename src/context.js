@@ -7,7 +7,6 @@ const API_KEY = `19115D982DBF9D2E9DFD15CE88B443BD`;
 const API_URI = `https://api.opendota.com/api/`;
 const CDN_URI = `http://cdn.dota2.com`;
 
-// { heroes, heroAbilities, heroLore, abilities, items, itemIds }
 const resources = [
   {
     url: `${API_URI}heroStats/?api_key=${API_KEY}`,
@@ -37,14 +36,13 @@ const resources = [
 
 export const AppProvider = ({ children }) => {
   const [term, setTerm] = useState("");
-  const [attributeFilter, setAttributeFilter] = useState([]);
-  const [rangeFilter, setRangeFilter] = useState([]);
+  const [attributeFilter, setAttributeFilter] = useState(["agi", "str", "int"]);
+  const [rangeFilter, setRangeFilter] = useState(["Melee", "Ranged"]);
   const [roleFilter, setRoleFilter] = useState([]);
-  const [sort, setSort] = useState("");
+  const [sort, setSort] = useState("localized_name");
   const [reverse, setReverse] = useState(false);
+  const [showFilters, setShowFilters] = useState(false);
   const [loading, data] = useFetch(resources);
-
-  // console.log({ attributeFilter, rangeFilter, roleFilter });
 
   const type = (val) => {
     setTerm(val);
@@ -74,6 +72,10 @@ export const AppProvider = ({ children }) => {
     }
   };
 
+  const toggleFilters = () => {
+    setShowFilters(!showFilters);
+  };
+
   // console.log(data && data.heroes);
 
   return (
@@ -101,6 +103,8 @@ export const AppProvider = ({ children }) => {
         handleRangeFilter,
         handleRoleFilter,
         toggleReverse,
+        showFilters,
+        toggleFilters,
       }}
     >
       {children}

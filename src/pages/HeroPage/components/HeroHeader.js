@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef} from "react";
 import agiIcon from "../../../assets/img/agi-big.jpg";
 import intIcon from "../../../assets/img/int-big.jpg";
 import strIcon from "../../../assets/img/str-big.jpg";
@@ -7,7 +7,8 @@ import { useGlobalContext } from "../../../context";
 
 const HeroHeader = ({ hero }) => {
   const { CDN_URI } = useGlobalContext();
-
+  const imgRef = useRef(null);
+  
   return (
     <div className='hero__header'>
       <div className='hero__img-container'>
@@ -15,6 +16,8 @@ const HeroHeader = ({ hero }) => {
           src={`${CDN_URI}${hero.img}`}
           alt={hero.localized_name}
           className='hero__portrait'
+          ref={imgRef}
+          // onLoad={() => console.log(' I loaded!')}
         />
         <img
           src={

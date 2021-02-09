@@ -10,10 +10,7 @@ const AbilityTooltip = ({ ability }, ref) => {
           <h4 className='ability__name'>{ability.dname}</h4>
           {ability.behavior && (
             <p className='ability__property'>
-              ABILITY:{" "}
-              {Array.isArray(ability.behavior)
-                ? ability.behavior.join(", ")
-                : ability.behavior}
+              ABILITY: {joinDescription(ability.behavior, ", ")}
             </p>
           )}
           {ability.dmg_type && (
@@ -50,7 +47,7 @@ const AbilityTooltip = ({ ability }, ref) => {
                 <p className='ability__attr' key={i}>
                   {a.header}{" "}
                   <span>
-                    {Array.isArray(a.value) ? a.value.join(" / ") : a.value}
+                    {joinDescription(a.value, " / ")}
                   </span>
                 </p>
               );
@@ -64,9 +61,7 @@ const AbilityTooltip = ({ ability }, ref) => {
                   className='ability__cd-icon'
                 />
                 <span>
-                  {Array.isArray(ability.cd)
-                    ? ability.cd.join(" / ")
-                    : ability.cd}
+                  {joinDescription(ability.cd, " / ")}
                 </span>
               </div>
             )}
@@ -74,9 +69,7 @@ const AbilityTooltip = ({ ability }, ref) => {
               <div className='ability__mc'>
                 <div className='ability__mc-icon'></div>
                 <span>
-                  {Array.isArray(ability.mc)
-                    ? ability.mc.join(" / ")
-                    : ability.mc}
+                  {joinDescription(ability.mc, " / ")}
                 </span>
               </div>
             )}

@@ -5,12 +5,13 @@ import { FaCaretDown } from "react-icons/fa";
 
 const SortListbox = ({
   defaultText,
+  defaultSort,
   options = [],
   callback,
   reverse,
   toggleReverse,
 }) => {
-  const [value, setValue] = useState("localized_name");
+  const [value, setValue] = useState(defaultSort);
   const [open, setOpen] = useState(false);
   const [label, setLabel] = useState("");
   const listboxRef = useRef(null);

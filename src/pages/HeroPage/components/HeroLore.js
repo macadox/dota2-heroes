@@ -6,6 +6,14 @@ const HeroLore = ({ heroLore, hero }) => {
   const regex = new RegExp(/(?<=npc_dota_hero_)\w+/, "");
   const heroAlias = hero.name.match(regex)[0];
   const lore = heroLore[heroAlias];
+
+  if (!lore)
+    return (
+      <div className='lore'>
+        <p className='lore__content no-data'>Hero has no lore added yet.</p>
+      </div>
+    );
+
   const [part1, part2] = lore
     .split(" ")
     .reduce((reducer, word, index) => {

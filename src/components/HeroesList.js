@@ -46,8 +46,6 @@ const HeroesList = () => {
     return newHeroes;
   };
 
-  console.log(heroes);
-
   const prepareList = () => {
     return sortList(
       filterList(heroes, [

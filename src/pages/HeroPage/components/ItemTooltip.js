@@ -1,17 +1,11 @@
 import React from "react";
 import { useGlobalContext } from "../../../context";
-import {joinDescription} from '../../utils'
+import { joinDescription } from "../../utils";
 import { FaCoins } from "react-icons/fa";
 import cooldown from "../../../assets/img/cooldown.png";
 
 const ItemTooltip = ({ item }, ref) => {
   const { CDN_URI } = useGlobalContext();
-
-  const joinDescription = (data, delimiter) => {
-    return Array.isArray(data) ? data.join(delimiter) : data;
-  };
-
-  console.log(item.hint);
 
   return (
     <div className='tooltip-wrap' ref={ref}>
@@ -80,7 +74,7 @@ const ItemTooltip = ({ item }, ref) => {
             <div className='item__cd'>
               <img className='item__cd-icon' src={cooldown} alt='cooldown' />
               <span>
-                {Array.isArray(item.cd) ? item.cd.join(" / ") : item.cd}
+                {joinDescription(item.cd, ' / ')}
               </span>
             </div>
           )}
@@ -88,7 +82,7 @@ const ItemTooltip = ({ item }, ref) => {
             <div className='item__mc'>
               <div className='item__mc-icon'></div>
               <span>
-                {Array.isArray(item.mc) ? item.mc.join(" / ") : item.mc}
+                {joinDescription(item.mc, ' / ')}
               </span>
             </div>
           )}

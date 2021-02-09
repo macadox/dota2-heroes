@@ -3,10 +3,13 @@ import Option from "../components/Option";
 
 import { FaCaretDown } from "react-icons/fa";
 
-const FilterListbox = ({ defaultText, options = [], callback, active }) => {
-  const [values, setValues] = useState(
-    active ? [...options.map((o) => o.value)] : []
-  );
+const FilterListbox = ({
+  defaultText,
+  options = [],
+  callback,
+  defaultFilter,
+}) => {
+  const [values, setValues] = useState(defaultFilter);
   const [open, setOpen] = useState(false);
   const listboxRef = useRef(null);
 

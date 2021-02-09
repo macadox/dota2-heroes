@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Item from './Item'
+import Item from "./Item";
 
 const PopularItemsList = ({ itemPopularity, items, itemIds }) => {
   const [results, setResults] = useState({});
@@ -36,6 +36,14 @@ const PopularItemsList = ({ itemPopularity, items, itemIds }) => {
     setIsMounted(true);
   }, []);
   if (!isMounted) return <></>;
+
+  if (results.every((res) => res.length === 0)) {
+    return (
+      <div className='hero__items-inner'>
+        <p className="no-data">No data about popular items for this hero...</p>
+      </div>
+    );
+  }
 
   return (
     <div className='hero__items-inner'>

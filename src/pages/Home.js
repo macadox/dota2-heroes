@@ -15,12 +15,17 @@ const Home = () => {
     handleRoleFilter,
     toggleReverse,
     reverse,
+    sort,
+    attributeFilter,
+    rangeFilter,
+    roleFilter,
+    showFilters,
+    toggleFilters,
   } = useGlobalContext();
-  const [showFilters, setShowFilters] = useState(false);
 
   return (
-    <>
-      <h1 className='app-title'>Dota 2 - Hero info</h1>
+    <div className='page-wrap'>
+      <h1 className='app-title'>Dota 2 - Hero Stats</h1>
       <section className='filters-main'>
         <div className='filters-wrap'>
           <h4>Filter heroes</h4>
@@ -43,6 +48,7 @@ const Home = () => {
                 callback={handleSort}
                 toggleReverse={toggleReverse}
                 reverse={reverse}
+                defaultSort={sort}
               />
             </div>
             <div
@@ -60,7 +66,7 @@ const Home = () => {
                     { label: "Intelligence", value: "int" },
                   ]}
                   callback={handleAttributeFilter}
-                  active={true}
+                  defaultFilter={attributeFilter}
                 />
                 <FilterListbox
                   defaultText='Range'
@@ -69,7 +75,7 @@ const Home = () => {
                     { label: "Ranged", value: "Ranged" },
                   ]}
                   callback={handleRangeFilter}
-                  active={true}
+                  defaultFilter={rangeFilter}
                 />
                 <FilterListbox
                   defaultText='Roles'
@@ -85,13 +91,13 @@ const Home = () => {
                     { label: "Support", value: "Support" },
                   ]}
                   callback={handleRoleFilter}
-                  active={false}
+                  defaultFilter={roleFilter}
                 />
               </div>
             </div>
           </div>
           <button
-            onClick={() => setShowFilters(!showFilters)}
+            onClick={toggleFilters}
             className='btn--alt filters__advanced'
           >
             {showFilters ? "hide filters" : "show filters"}
@@ -106,7 +112,7 @@ const Home = () => {
           <HeroesList />
         </section>
       )}
-    </>
+    </div>
   );
 };
 

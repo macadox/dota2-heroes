@@ -6,7 +6,8 @@ import { useGlobalContext } from "./context";
 // Pages
 import Home from "./pages/Home";
 import HeroPage from "./pages/HeroPage";
-import Error from "./pages/Error";
+import ErrorPage from "./pages/ErrorPage";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
@@ -17,9 +18,10 @@ const App = () => {
         </Route>
         <Route path='/hero/:id' children={<HeroPage />}></Route>
         <Route path='*'>
-          <Error />
+          <ErrorPage />
         </Route>
       </Switch>
+      <Footer />
     </Router>
   );
 };
