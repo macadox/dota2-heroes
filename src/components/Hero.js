@@ -25,11 +25,12 @@ const Hero = ({ hero, tabIndex, ...props }) => {
         style={{ textDecoration: "none" }}
         className='card__url'
       >
-        <img src={icon} alt={primary_attr} className='card__attr' />
+        <img src={icon} alt={primary_attr} className='card__attr' loading="lazy" />
         <img
           src={`${CDN_URI}${img}`}
           alt={localized_name}
           className='card__portrait'
+          loading="lazy"
         />
         <p className='card__title'>{localized_name}</p>
       </Link>

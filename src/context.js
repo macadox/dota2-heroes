@@ -5,7 +5,7 @@ const AppContext = React.createContext();
 
 const API_KEY = `19115D982DBF9D2E9DFD15CE88B443BD`;
 const API_URI = `https://api.opendota.com/api/`;
-const CDN_URI = `http://cdn.dota2.com`;
+const CDN_URI = `https://cdn.dota2.com`;
 
 const resources = [
   {
@@ -41,7 +41,7 @@ export const AppProvider = ({ children }) => {
   const [roleFilter, setRoleFilter] = useState([]);
   const [sort, setSort] = useState("localized_name");
   const [reverse, setReverse] = useState(false);
-  const [showFilters, setShowFilters] = useState(false);
+  const [showFilters, setShowFilters] = useState(false); 
   const [loading, data] = useFetch(resources);
 
   const type = (val) => {

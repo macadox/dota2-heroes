@@ -165,7 +165,6 @@ const HeroesList = () => {
   return (
     <ul
       className='hero-list'
-      role='grid'
       aria-label='heroes list'
       ref={gridRef}
     >
@@ -179,9 +178,7 @@ const HeroesList = () => {
           return (
             <Hero
               key={id}
-              role='gridcell'
               tabIndex={i === activeIndex ? 0 : -1}
-              aria-selected={i === activeIndex}
               hero={{ localized_name, primary_attr, img, id }}
               onKeyDown={handleKeyDown}
             />

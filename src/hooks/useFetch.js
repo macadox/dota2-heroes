@@ -30,6 +30,7 @@ export const useFetch = (objs, id) => {
       }
     };
     fetchData();
+    // eslint-disable-next-line
   }, [id]);
 
   return [loading, data];

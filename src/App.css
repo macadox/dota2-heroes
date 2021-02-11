@@ -1,8 +1,3 @@
-/* Colors
-#100D0E 
-#2F3235
-#D0CECD */
-
 :root {
   --bcg-clr: #15181c;
   --section-clr: #242f39;
@@ -23,9 +18,6 @@
   --table-light: #252d35;
   --table-text: rgba(203, 196, 189, 0.775);
 }
-
-/* background: #191516;
-color: #8B8982; */
 
 * {
   margin: 0;
@@ -58,10 +50,6 @@ h3 {
 
 h4 {
   font-size: 1.8rem;
-}
-
-h5 {
-  font-size: 1.4rem;
 }
 
 .btn {
@@ -151,6 +139,7 @@ h5 {
   top: 1px;
   right: 1px;
   width: 28px;
+  height: 28px;
   opacity: 0.9;
   border-radius: 50%;
 }
@@ -174,7 +163,6 @@ h5 {
 
 @media (min-width: 1024px) {
   .hero-list {
-    /* background-color: var(--table-light); */
     max-width: 1024px;
     padding: 0.65em;
   }
@@ -212,7 +200,8 @@ h5 {
 
 .hero__portrait {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
 }
 
 .hero__attribute {
@@ -222,7 +211,6 @@ h5 {
   top: 0;
   left: 0;
   transform: translate(-30%, -30%);
-  /* opacity: 0.85; */
   filter: contrast(90%) brightness(110%) saturate(140%);
 }
 
@@ -330,17 +318,14 @@ h5 {
 
 .agi {
   border-color: #3a7d33;
-  /* color: #3a7d33; */
 }
 
 .str {
   border-color: #9f3939;
-  /* color: #9f3939; */
 }
 
 .int {
   border-color: #3a4fa4;
-  /* color: #3a4fa4; */
 }
 
 @media (min-width: 640px) {
@@ -513,6 +498,7 @@ td {
   width: 100%;
   height: 100%;
   outline: none;
+  object-fit: cover;
 }
 
 .artifact {
@@ -860,8 +846,8 @@ body {
 .loader__text {
   display: block;
   margin-top: 0.5em;
-  color: rgba(203, 205, 211, 0.88);
-  opacity: 0.6;
+  color: var(--font-clr-light);
+  opacity: 0.8;
   font-size: 1.2rem;
 }
 
@@ -872,7 +858,6 @@ body {
 }
 
 .filters-wrap {
-  /* background: var(--table-light); */
   border: 2px solid var(--border-clr-dark);
   box-shadow: 0 0 8px 3px rgb(13, 14, 14);
   padding: 0.65em;
@@ -1058,7 +1043,6 @@ body {
   top: 100%;
   left: 0;
   z-index: 49;
-  /* max-width: 330px; */
 }
 
 .tooltip {
@@ -1066,7 +1050,6 @@ body {
   background-color: var(--bcg-clr);
   border: 2px solid var(--border-clr-dark);
   box-shadow: 0 0 8px 3px rgb(13, 14, 14);
-  /* opacity: 1; */
   transition: 0.2s opacity ease-in-out;
 }
 
