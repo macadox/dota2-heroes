@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import HeroesList from "../components/HeroesList";
 import Loading from "../components/Loading";
 import SearchBar from "../components/SearchBar";

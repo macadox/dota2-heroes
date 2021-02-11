@@ -9,7 +9,7 @@ const HeroAbilities = ({ heroAbilities, abilities }) => {
   return (
     <div className='hero__abilities'>
       {mappedAbilities.map((ability) => {
-        if (!ability.dname) return;
+        if (!ability.dname) return null;
         return <Ability ability={ability} key={ability.dname} />;
       })}
     </div>

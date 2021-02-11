@@ -18,40 +18,40 @@ const HeroesList = () => {
   const [filteredHeroes, setFilteredHeroes] = useState([...heroes]);
   const gridRef = useRef(null);
 
-  const sortList = (heroes) => {
-    const sortedHeroes = heroes.sort((a, b) => {
-      if (!reverse) {
-        if (b[sort] < a[sort]) return 1;
-        else return -1;
-      } else {
-        if (b[sort] < a[sort]) return -1;
-        else return 1;
-      }
-    });
-
-    return sortedHeroes;
-  };
-
-  const filterList = (heroes, filters) => {
-    const regex = new RegExp(term, "gi");
-    const newHeroes = heroes.filter((hero) => {
-      return (
-        !filters
-          .map(({ key, val }) => {
-            if (Array.isArray(hero[key])) {
-              return val.every((r) => hero[key].includes(r));
-            }
-            if (val.includes(hero[key])) return true;
-            else return false;
-          })
-          .includes(false) &&
-        (regex.test(hero.localized_name) || regex.test(hero.name))
-      );
-    });
-    return newHeroes;
-  };
-
   useEffect(() => {
+    const sortList = (heroes) => {
+      const sortedHeroes = heroes.sort((a, b) => {
+        if (!reverse) {
+          if (b[sort] < a[sort]) return 1;
+          else return -1;
+        } else {
+          if (b[sort] < a[sort]) return -1;
+          else return 1;
+        }
+      });
+
+      return sortedHeroes;
+    };
+
+    const filterList = (heroes, filters) => {
+      const regex = new RegExp(term, "gi");
+      const newHeroes = heroes.filter((hero) => {
+        return (
+          !filters
+            .map(({ key, val }) => {
+              if (Array.isArray(hero[key])) {
+                return val.every((r) => hero[key].includes(r));
+              }
+              if (val.includes(hero[key])) return true;
+              else return false;
+            })
+            .includes(false) &&
+          (regex.test(hero.localized_name) || regex.test(hero.name))
+        );
+      });
+      return newHeroes;
+    };
+
     const newList = sortList(
       filterList(heroes, [
         { key: "primary_attr", val: attributeFilter },
@@ -129,6 +129,9 @@ const HeroesList = () => {
       case keys.home: {
         e.preventDefault();
         index = 0;
+        break;
+      }
+      default: {
         break;
       }
     }

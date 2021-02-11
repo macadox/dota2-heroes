@@ -54,7 +54,7 @@ const HeroPresenceTable = ({ laneRoles }) => {
           const games = role[role.length - 1].games;
 
           if (games / totalGames < 0.04) {
-            return;
+            return null;
           }
 
           return (

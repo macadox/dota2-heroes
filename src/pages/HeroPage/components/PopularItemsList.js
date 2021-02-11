@@ -34,13 +34,13 @@ const PopularItemsList = ({ itemPopularity, items, itemIds }) => {
     ];
     setResults(ordered);
     setIsMounted(true);
-  }, []);
+  }, [itemIds, itemPopularity, items]);
   if (!isMounted) return <></>;
 
   if (results.every((res) => res.length === 0)) {
     return (
       <div className='hero__items-inner'>
-        <p className="no-data">No data about popular items for this hero...</p>
+        <p className='no-data'>No data about popular items for this hero...</p>
       </div>
     );
   }

@@ -19,17 +19,18 @@ const Ability = ({ ability }) => {
   };
 
   useEffect(() => {
-    abilityRef.current.addEventListener("mouseover", showTooltip);
-    abilityRef.current.addEventListener("mouseleave", hideTooltip);
-    abilityRef.current.addEventListener("focusin", showTooltip);
-    abilityRef.current.addEventListener("focusout", hideTooltip);
+    let cur = abilityRef.current;
+    cur.addEventListener("mouseover", showTooltip);
+    cur.addEventListener("mouseleave", hideTooltip);
+    cur.addEventListener("focusin", showTooltip);
+    cur.addEventListener("focusout", hideTooltip);
 
     return () => {
-      if (abilityRef.current) {
-        abilityRef.current.removeEventListener("mouseover", showTooltip);
-        abilityRef.current.removeEventListener("mouseleave", hideTooltip);
-        abilityRef.current.removeEventListener("focusin", showTooltip);
-        abilityRef.current.removeEventListener("focusout", hideTooltip);
+      if (cur) {
+        cur.removeEventListener("mouseover", showTooltip);
+        cur.removeEventListener("mouseleave", hideTooltip);
+        cur.removeEventListener("focusin", showTooltip);
+        cur.removeEventListener("focusout", hideTooltip);
       }
     };
   }, []);

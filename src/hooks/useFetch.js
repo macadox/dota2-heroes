@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 // OBJ requires {url, key}
 export const useFetch = (objs, id) => {
@@ -30,7 +30,7 @@ export const useFetch = (objs, id) => {
       }
     };
     fetchData();
-  }, [id]);
+  }, [id, objs]);
 
   return [loading, data];
 };

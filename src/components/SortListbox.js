@@ -24,7 +24,7 @@ const SortListbox = ({
   const handleClick = (value, target) => {
     const index = options.findIndex((o) => o.value === value);
     setValue(value);
-    setActiveIndex(index)
+    setActiveIndex(index);
     setActiveDescendant(target.id);
     setListboxOpen(false);
     toggleReverse(target);
@@ -75,6 +75,9 @@ const SortListbox = ({
         newIndex = 0;
         break;
       }
+      default: {
+        break;
+      }
     }
     setActiveIndex(newIndex);
   };
@@ -85,17 +88,17 @@ const SortListbox = ({
     if (option) {
       setLabel(option.label);
     }
-  }, [value]);
+  }, [value, options]);
 
   useEffect(() => {
     setActiveDescendant(`elem_list_${options[activeIndex].value}`);
-  }, [activeIndex]);
+  }, [activeIndex, options]);
 
   useEffect(() => {
     if (callback) {
       callback(value);
     }
-  }, [value]);
+  }, [value, callback]);
 
   useEffect(() => {
     document.addEventListener("click", handleClickOutside);

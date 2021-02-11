@@ -41,7 +41,7 @@ const AbilityTooltip = ({ ability, ...props }, ref) => {
               a.header === "ABILITYCASTRANGE:" ||
               a.header === "ABILITYCASTPOINT"
             )
-              return;
+              return null;
             else
               return (
                 <p className='ability__attr' key={i}>

@@ -21,17 +21,19 @@ const Item = ({ item }) => {
   };
 
   useEffect(() => {
-    itemRef.current.addEventListener("mouseover", showTooltip);
-    itemRef.current.addEventListener("mouseleave", hideTooltip);
-    itemRef.current.addEventListener("focusin", showTooltip);
-    itemRef.current.addEventListener("focusout", hideTooltip);
+    const cur = itemRef.current;
+
+    cur.addEventListener("mouseover", showTooltip);
+    cur.addEventListener("mouseleave", hideTooltip);
+    cur.addEventListener("focusin", showTooltip);
+    cur.addEventListener("focusout", hideTooltip);
 
     return () => {
-      if (itemRef.current) {
-        itemRef.current.removeEventListener("mouseover", showTooltip);
-        itemRef.current.removeEventListener("mouseleave", hideTooltip);
-        itemRef.current.removeEventListener("focusin", showTooltip);
-        itemRef.current.removeEventListener("focusout", hideTooltip);
+      if (cur) {
+        cur.removeEventListener("mouseover", showTooltip);
+        cur.removeEventListener("mouseleave", hideTooltip);
+        cur.removeEventListener("focusin", showTooltip);
+        cur.removeEventListener("focusout", hideTooltip);
       }
     };
   }, []);

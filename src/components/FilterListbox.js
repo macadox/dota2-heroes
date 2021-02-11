@@ -96,11 +96,11 @@ const FilterListbox = ({
         options.map((o) => o.value)
       );
     }
-  }, [values]);
+  }, [values, callback, options]);
 
   useEffect(() => {
     setActiveDescendant(`elem_list_${options[activeIndex].value}`);
-  }, [activeIndex]);
+  }, [activeIndex, options]);
 
   useEffect(() => {
     document.addEventListener("click", handleClickOutside);
