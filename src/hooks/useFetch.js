@@ -30,7 +30,7 @@ export const useFetch = (objs, id) => {
       }
     };
     fetchData();
-  }, [id, objs]);
+  }, [id]);
 
   return [loading, data];
 };
