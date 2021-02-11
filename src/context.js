@@ -5,7 +5,7 @@ const AppContext = React.createContext();
 
 const API_KEY = `19115D982DBF9D2E9DFD15CE88B443BD`;
 const API_URI = `https://api.opendota.com/api/`;
-const CDN_URI = `https://cdn.dota2.com`;
+const CDN_URI = `http://cdn.dota2.com`;
 
 const resources = [
   {
