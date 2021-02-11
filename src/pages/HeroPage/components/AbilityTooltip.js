@@ -1,6 +1,6 @@
 import React from "react";
 import cooldown from "../../../assets/img/cooldown.png";
-import { joinDescription } from "../../utils";
+import { joinDescription } from "../../../utils";
 
 const AbilityTooltip = ({ ability }, ref) => {
   return (

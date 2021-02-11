@@ -5,18 +5,19 @@
 ## Demo
 
 ## What I've learned
+
 Forwarding ref
 creating custom hooks
 asynchronous fetching of data using reacts useEffect hook
+
 ## Todos
 
 ### New
 
-- add styling on the tooltips (items, abilities) 
+- add styling on the tooltips (items, abilities) [x]
 - add winrate against matchups + <Link /> component that redirects to a hero page [x]
-- add Aria [ ]
-- Add Error page: "Something went wrong" [ ]
+- add Aria [x]
+- Add Error page: "Something went wrong" [x]
 - Images size before they load [x]
 
 ### Completed
-

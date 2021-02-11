@@ -1,17 +1,17 @@
 import React from "react";
 import { FaCheck } from "react-icons/fa";
 
-const Option = ({ option, onClick, selected, isMultiselect }) => {
+const Option = ({ option, onClick, selected, ...props }) => {
   const { label, value } = option;
+
   return (
     <li
-      className={`listbox__option ${
-        selected ? "listbox__option--selected" : ""
-      }`}
+      className={`listbox__option`}
       onClick={(e) => onClick(value, e.target)}
+      {...props}
     >
       {label}
-      {isMultiselect && selected && <FaCheck className='listbox__check' />}
+      {selected && <FaCheck className='listbox__check' />}
     </li>
   );
 };

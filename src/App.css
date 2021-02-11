@@ -934,6 +934,10 @@ body {
   min-width: 120px;
 }
 
+.listbox__button:focus {
+  border-color: var(--focus-clr);
+}
+
 .listbox__caret {
   font-size: 1.6rem;
   color: var(--font-clr);
@@ -955,11 +959,17 @@ body {
   font-size: 1.3rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
-.listbox__option:hover {
+.listbox__option:hover,
+.listbox__option[aria-selected="true"] {
   background-color: var(--table-dark);
   cursor: pointer;
+}
+
+.listbox__option[aria-selected="true"] {
+  box-shadow: 0 0 0 2px var(--focus-clr);
 }
 
 .listbox__option--selected {
@@ -972,10 +982,22 @@ body {
 }
 
 .filters {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: flex-start;
+  display: grid;
+  justify-items: start;
+}
+
+/* Grid to switch order for A11Y */
+.filters__sort {
+  grid-row: 1 /2;
+}
+
+.filters__inner {
+  width: 100%;
+  grid-row: 2/3;
+}
+
+.filters__advanced {
+  grid-row: 3/4;
 }
 
 .filters__inner--hidden {
@@ -997,10 +1019,6 @@ body {
   .filters-wrap {
     max-width: 1024px;
     margin: 0 auto;
-  }
-
-  .filters__inner {
-    width: 100%;
   }
 
   .filters__inner-center {

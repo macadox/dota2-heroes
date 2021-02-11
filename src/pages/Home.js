@@ -51,6 +51,12 @@ const Home = () => {
                 defaultSort={sort}
               />
             </div>
+            <button
+              onClick={toggleFilters}
+              className='btn--alt filters__advanced'
+            >
+              {showFilters ? "hide filters" : "show filters"}
+            </button>
             <div
               className={`filters__inner ${
                 !showFilters ? "filters__inner--hidden" : ""
@@ -96,12 +102,6 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <button
-            onClick={toggleFilters}
-            className='btn--alt filters__advanced'
-          >
-            {showFilters ? "hide filters" : "show filters"}
-          </button>
         </div>
       </section>
 

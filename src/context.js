@@ -65,7 +65,7 @@ export const AppProvider = ({ children }) => {
   };
 
   const toggleReverse = (target) => {
-    if (target.classList.contains("listbox__option--selected")) {
+    if (target.getAttribute("aria-selected") == "true") {
       setReverse(!reverse);
     } else {
       setReverse(false);

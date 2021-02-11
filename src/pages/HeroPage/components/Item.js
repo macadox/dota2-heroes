@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import ItemTooltip from "./ItemTooltip";
 
-import { handlePosition } from "../../utils";
+import { handlePosition } from "../../../utils";
 import { useGlobalContext } from "../../../context";
 
 const Item = ({ item }) => {

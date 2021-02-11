@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Hero from "./Hero";
-
+import { keys } from "../utils";
 import { useGlobalContext } from "../context";
 
 const HeroesList = () => {
@@ -13,6 +13,10 @@ const HeroesList = () => {
     roleFilter,
     term,
   } = useGlobalContext();
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [numColumns, setNumColumns] = useState(null);
+  const [filteredHeroes, setFilteredHeroes] = useState([...heroes]);
+  const gridRef = useRef(null);
 
   const sortList = (heroes) => {
     const sortedHeroes = heroes.sort((a, b) => {
@@ -27,6 +31,7 @@ const HeroesList = () => {
 
     return sortedHeroes;
   };
+
   const filterList = (heroes, filters) => {
     const regex = new RegExp(term, "gi");
     const newHeroes = heroes.filter((hero) => {
@@ -46,28 +51,129 @@ const HeroesList = () => {
     return newHeroes;
   };
 
-  const prepareList = () => {
-    return sortList(
+  useEffect(() => {
+    const newList = sortList(
       filterList(heroes, [
         { key: "primary_attr", val: attributeFilter },
         { key: "attack_type", val: rangeFilter },
         { key: "roles", val: roleFilter },
       ])
     );
+    setFilteredHeroes(newList);
+  }, [sort, attributeFilter, rangeFilter, roleFilter, reverse, term, heroes]);
+
+  const handleKeyDown = (e) => {
+    switch (e.keyCode) {
+      case keys.left: {
+        e.preventDefault();
+        if (activeIndex % numColumns == 0) {
+          if (activeIndex + numColumns - 1 >= filteredHeroes.length) {
+            setActiveIndex(filteredHeroes.length - 1);
+          } else {
+            setActiveIndex(activeIndex + numColumns - 1);
+          }
+        } else {
+          setActiveIndex(activeIndex - 1);
+        }
+        break;
+      }
+      case keys.up: {
+        e.preventDefault();
+        if (activeIndex < numColumns) {
+          let heroIndex = filteredHeroes.length - 1;
+          while (heroIndex % numColumns > activeIndex % numColumns) {
+            heroIndex--;
+          }
+          setActiveIndex(heroIndex);
+        } else {
+          setActiveIndex(activeIndex - numColumns);
+        }
+        break;
+      }
+      case keys.right: {
+        e.preventDefault();
+        if (activeIndex % numColumns == numColumns - 1) {
+          setActiveIndex = activeIndex - numColumns - 1;
+        } else if (activeIndex + 1 >= filteredHeroes.length) {
+          const difference = activeIndex % numColumns;
+          setActiveIndex(activeIndex - difference);
+        } else {
+          setActiveIndex(activeIndex + 1);
+        }
+        break;
+      }
+      case keys.down: {
+        e.preventDefault();
+        if (activeIndex + numColumns > filteredHeroes.length - 1) {
+          let heroIndex = 0;
+          while (heroIndex % numColumns < activeIndex % numColumns) {
+            heroIndex++;
+          }
+          setActiveIndex(heroIndex);
+        } else {
+          setActiveIndex(setActiveIndex + numColumns);
+        }
+        break;
+      }
+      case keys.end: {
+        e.preventDefault();
+        setActiveIndex(filteredHeroes.length - 1);
+        break;
+      }
+      case keys.home: {
+        e.preventDefault();
+        setActiveIndex(0);
+        break;
+      }
+    }
   };
 
+  console.log(activeIndex);
+
+  const handleResize = () => {
+    const columns = window
+      .getComputedStyle(gridRef.current)
+      .getPropertyValue("grid-template-columns")
+      .split(" ").length;
+
+    setNumColumns(columns);
+  };
+
+  useEffect(() => {
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {});
+
   return (
-    <ul className='hero-list'>
-      {prepareList().length === 0 ? (
+    <ul
+      className='hero-list'
+      role='grid'
+      aria-label='heroes list'
+      ref={gridRef}
+    >
+      {filteredHeroes.length === 0 ? (
         <span className='hero-list__error'>
           There are no heroes matching that criteria...
         </span>
       ) : (
-        prepareList().map((h) => {
+        filteredHeroes.map((h, i) => {
           const { id, localized_name, primary_attr, img } = h;
-
           return (
-            <Hero key={id} hero={{ localized_name, primary_attr, img, id }} />
+            <Hero
+              key={id}
+              role='gridcell'
+              tabIndex={i === activeIndex ? 0 : -1}
+              aria-selected={i === activeIndex}
+              hero={{ localized_name, primary_attr, img, id }}
+              focused={i === activeIndex}
+              onKeyDown={handleKeyDown}
+            />
           );
         })
       )}

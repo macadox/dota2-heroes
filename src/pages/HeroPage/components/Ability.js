@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import AbilityTooltip from "./AbilityTooltip";
-import { handlePosition } from "../../utils";
+import { handlePosition } from "../../../utils";
 
 import { useGlobalContext } from "../../../context";
 
