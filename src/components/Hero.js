@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { useGlobalContext } from "../context";
 
@@ -6,7 +6,7 @@ import agiIcon from "../assets/img/agi-min.jpg";
 import intIcon from "../assets/img/int-min.jpg";
 import strIcon from "../assets/img/str-min.jpg";
 
-const Hero = ({ hero, focused, tabIndex, ...props }) => {
+const Hero = ({ hero, tabIndex, ...props }) => {
   const { localized_name, img, primary_attr, id } = hero;
   const { CDN_URI } = useGlobalContext();
   const icon =
@@ -16,12 +16,14 @@ const Hero = ({ hero, focused, tabIndex, ...props }) => {
       ? intIcon
       : strIcon;
 
+
   return (
     <li className='card' {...props}>
       <Link
         tabIndex={tabIndex}
         to={`/hero/${id}`}
         style={{ textDecoration: "none" }}
+        className='card__url'
       >
         <img src={icon} alt={primary_attr} className='card__attr' />
         <img

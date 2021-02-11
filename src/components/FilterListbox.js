@@ -30,7 +30,9 @@ const FilterListbox = ({
   };
 
   const handleClick = (value, target) => {
+    const index = options.findIndex((o) => o.value === value);
     updateValues(value);
+    setActiveIndex(index);
     setActiveDescendant(target.id);
   };
 
@@ -47,7 +49,7 @@ const FilterListbox = ({
       case keys.left:
       case keys.up: {
         e.preventDefault();
-        if (newIndex == 0) {
+        if (newIndex === 0) {
           newIndex = options.length - 1;
         } else {
           newIndex--;
@@ -57,7 +59,7 @@ const FilterListbox = ({
       case keys.right:
       case keys.down: {
         e.preventDefault();
-        if (newIndex == options.length - 1) {
+        if (newIndex === options.length - 1) {
           newIndex = 0;
         } else {
           newIndex++;
@@ -71,11 +73,16 @@ const FilterListbox = ({
         break;
       }
       case keys.end: {
+        e.preventDefault();
         newIndex = options.length - 1;
         break;
       }
       case keys.home: {
+        e.preventDefault();
         newIndex = 0;
+        break;
+      }
+      default: {
         break;
       }
     }

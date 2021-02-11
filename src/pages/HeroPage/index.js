@@ -52,16 +52,11 @@ const HeroPage = () => {
 
   if (loading || heroLoading) return <Loading />;
 
-  //   TODO ERROR COMPONENT
-
   const hero = heroes.find((h) => h.hero_id === parseInt(id));
 
   if (!hero || (data && data.matchups.length === 0)) {
     return <Error />;
   }
-
-  console.log(data.benchmarks);
-  console.log(hero);
 
   const totalMatchupsPlayed = data.matchups.reduce(
     (reducer, matchup) => (reducer += matchup.games_played),
@@ -102,7 +97,7 @@ const HeroPage = () => {
   return (
     <div className='page-wrap'>
       <section className='section section--hero'>
-        <Link className='btn' to='/'>
+        <Link className='btn btn--back' to='/'>
           Back
         </Link>
         <div className='hero'>

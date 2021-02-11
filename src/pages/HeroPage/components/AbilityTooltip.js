@@ -2,9 +2,9 @@ import React from "react";
 import cooldown from "../../../assets/img/cooldown.png";
 import { joinDescription } from "../../../utils";
 
-const AbilityTooltip = ({ ability }, ref) => {
+const AbilityTooltip = ({ ability, ...props }, ref) => {
   return (
-    <div className='tooltip-wrap' ref={ref}>
+    <div className='tooltip-wrap' ref={ref} {...props}>
       <div className='tooltip tooltip--ability'>
         <div className='tooltip__main'>
           <h4 className='ability__name'>{ability.dname}</h4>
@@ -18,7 +18,7 @@ const AbilityTooltip = ({ ability }, ref) => {
               DAMAGE TYPE:{" "}
               <span
                 className={`${
-                  ability.dmg_type == "Physical" ? "hl--physical" : "hl--magic"
+                  ability.dmg_type === "Physical" ? "hl--physical" : "hl--magic"
                 }`}
               >
                 {ability.dmg_type}

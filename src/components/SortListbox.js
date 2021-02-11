@@ -22,7 +22,9 @@ const SortListbox = ({
   const listboxRef = useRef(null);
 
   const handleClick = (value, target) => {
+    const index = options.findIndex((o) => o.value === value);
     setValue(value);
+    setActiveIndex(index)
     setActiveDescendant(target.id);
     setListboxOpen(false);
     toggleReverse(target);
@@ -41,7 +43,7 @@ const SortListbox = ({
       case keys.left:
       case keys.up: {
         e.preventDefault();
-        if (newIndex == 0) {
+        if (newIndex === 0) {
           newIndex = options.length - 1;
         } else {
           newIndex--;
@@ -51,7 +53,7 @@ const SortListbox = ({
       case keys.right:
       case keys.down: {
         e.preventDefault();
-        if (newIndex == options.length - 1) {
+        if (newIndex === options.length - 1) {
           newIndex = 0;
         } else {
           newIndex++;
@@ -119,7 +121,6 @@ const SortListbox = ({
         <ul
           className='listbox__list'
           role='listbox'
-          aria-labelledby={"todo"}
           tabIndex={-1}
           aria-activedescendant={activeDescendant}
         >

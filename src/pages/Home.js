@@ -28,13 +28,13 @@ const Home = () => {
       <h1 className='app-title'>Dota 2 - Hero Stats</h1>
       <section className='filters-main'>
         <div className='filters-wrap'>
-          <h4>Filter heroes</h4>
+          <h2>Filter heroes</h2>
           <div className='search'>
             <SearchBar />
           </div>
           <div className='filters'>
             <div className='filters__sort'>
-              <h5>Sort data</h5>
+              <h3>Sort data</h3>
               <SortListbox
                 defaultText='Sort by'
                 options={[
@@ -62,7 +62,7 @@ const Home = () => {
                 !showFilters ? "filters__inner--hidden" : ""
               }`}
             >
-              <h5>Filter data</h5>
+              <h3>Filter data</h3>
               <div className='filters__inner-center'>
                 <FilterListbox
                   defaultText='Attributes'

@@ -65,7 +65,7 @@ export const AppProvider = ({ children }) => {
   };
 
   const toggleReverse = (target) => {
-    if (target.getAttribute("aria-selected") == "true") {
+    if (target.getAttribute("aria-selected") === "true") {
       setReverse(!reverse);
     } else {
       setReverse(false);
@@ -75,8 +75,6 @@ export const AppProvider = ({ children }) => {
   const toggleFilters = () => {
     setShowFilters(!showFilters);
   };
-
-  // console.log(data && data.heroes);
 
   return (
     <AppContext.Provider

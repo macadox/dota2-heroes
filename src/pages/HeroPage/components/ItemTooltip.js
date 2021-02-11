@@ -4,11 +4,11 @@ import { joinDescription } from "../../../utils";
 import { FaCoins } from "react-icons/fa";
 import cooldown from "../../../assets/img/cooldown.png";
 
-const ItemTooltip = ({ item }, ref) => {
+const ItemTooltip = ({ item, ...props }, ref) => {
   const { CDN_URI } = useGlobalContext();
 
   return (
-    <div className='tooltip-wrap' ref={ref}>
+    <div className='tooltip-wrap' ref={ref} {...props}>
       <div className='tooltip tooltip--item' id={`${item.id}_tooltip`}>
         <div className='tooltip__header'>
           <img
@@ -73,17 +73,13 @@ const ItemTooltip = ({ item }, ref) => {
           {item.cd && (
             <div className='item__cd'>
               <img className='item__cd-icon' src={cooldown} alt='cooldown' />
-              <span>
-                {joinDescription(item.cd, ' / ')}
-              </span>
+              <span>{joinDescription(item.cd, " / ")}</span>
             </div>
           )}
           {item.mc && (
             <div className='item__mc'>
               <div className='item__mc-icon'></div>
-              <span>
-                {joinDescription(item.mc, ' / ')}
-              </span>
+              <span>{joinDescription(item.mc, " / ")}</span>
             </div>
           )}
         </div>

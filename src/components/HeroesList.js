@@ -62,18 +62,24 @@ const HeroesList = () => {
     setFilteredHeroes(newList);
   }, [sort, attributeFilter, rangeFilter, roleFilter, reverse, term, heroes]);
 
+  useEffect(() => {
+    handleResize();
+    setActiveIndex(0);
+  }, [filteredHeroes]);
+
   const handleKeyDown = (e) => {
+    let index = activeIndex;
     switch (e.keyCode) {
       case keys.left: {
         e.preventDefault();
-        if (activeIndex % numColumns == 0) {
+        if (activeIndex % numColumns === 0) {
           if (activeIndex + numColumns - 1 >= filteredHeroes.length) {
-            setActiveIndex(filteredHeroes.length - 1);
+            index = filteredHeroes.length - 1;
           } else {
-            setActiveIndex(activeIndex + numColumns - 1);
+            index = activeIndex + numColumns - 1;
           }
         } else {
-          setActiveIndex(activeIndex - 1);
+          index = activeIndex - 1;
         }
         break;
       }
@@ -84,21 +90,21 @@ const HeroesList = () => {
           while (heroIndex % numColumns > activeIndex % numColumns) {
             heroIndex--;
           }
-          setActiveIndex(heroIndex);
+          index = heroIndex;
         } else {
-          setActiveIndex(activeIndex - numColumns);
+          index = activeIndex - numColumns;
         }
         break;
       }
       case keys.right: {
         e.preventDefault();
-        if (activeIndex % numColumns == numColumns - 1) {
-          setActiveIndex = activeIndex - numColumns - 1;
+        if (activeIndex % numColumns === numColumns - 1) {
+          index = activeIndex - numColumns + 1;
         } else if (activeIndex + 1 >= filteredHeroes.length) {
           const difference = activeIndex % numColumns;
-          setActiveIndex(activeIndex - difference);
+          index = activeIndex - difference;
         } else {
-          setActiveIndex(activeIndex + 1);
+          index = activeIndex + 1;
         }
         break;
       }
@@ -109,26 +115,31 @@ const HeroesList = () => {
           while (heroIndex % numColumns < activeIndex % numColumns) {
             heroIndex++;
           }
-          setActiveIndex(heroIndex);
+          index = heroIndex;
         } else {
-          setActiveIndex(setActiveIndex + numColumns);
+          index = activeIndex + numColumns;
         }
         break;
       }
       case keys.end: {
         e.preventDefault();
-        setActiveIndex(filteredHeroes.length - 1);
+        index = filteredHeroes.length - 1;
         break;
       }
       case keys.home: {
         e.preventDefault();
-        setActiveIndex(0);
+        index = 0;
         break;
       }
     }
+    focusCard(index);
+    setActiveIndex(index);
   };
 
-  console.log(activeIndex);
+  const focusCard = (idx) => {
+    const cardLinks = gridRef.current.querySelectorAll(".card__url");
+    cardLinks[idx].focus();
+  };
 
   const handleResize = () => {
     const columns = window
@@ -147,8 +158,6 @@ const HeroesList = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-  useEffect(() => {});
 
   return (
     <ul
@@ -171,7 +180,6 @@ const HeroesList = () => {
               tabIndex={i === activeIndex ? 0 : -1}
               aria-selected={i === activeIndex}
               hero={{ localized_name, primary_attr, img, id }}
-              focused={i === activeIndex}
               onKeyDown={handleKeyDown}
             />
           );

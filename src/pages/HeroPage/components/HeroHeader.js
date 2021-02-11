@@ -17,7 +17,6 @@ const HeroHeader = ({ hero }) => {
           alt={hero.localized_name}
           className='hero__portrait'
           ref={imgRef}
-          // onLoad={() => console.log(' I loaded!')}
         />
         <img
           src={
