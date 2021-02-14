@@ -1,26 +1,28 @@
 import "./App.css";
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+// Loader
+import Loader from "./components/Loading";
 
 // Pages
-import Home from "./pages/Home";
-import HeroPage from "./pages/HeroPage";
-import ErrorPage from "./pages/ErrorPage";
-import Footer from "./components/Footer";
+const Home = lazy(() => import("./pages/Home"));
+const HeroPage = lazy(() => import("./pages/HeroPage"));
+const ErrorPage = lazy(() => import("./pages/ErrorPage"));
 
 const App = () => {
   return (
     <Router>
-      <Switch>
-        <Route exact path='/'>
-          <Home />
-        </Route>
-        <Route path='/hero/:id' children={<HeroPage />}></Route>
-        <Route path='*'>
-          <ErrorPage />
-        </Route>
-      </Switch>
-      <Footer />
+      <Suspense fallback={<Loader />}>
+        <Switch>
+          <Route exact path='/'>
+            <Home />
+          </Route>
+          <Route path='/hero/:id' children={<HeroPage />}></Route>
+          <Route path='*'>
+            <ErrorPage />
+          </Route>
+        </Switch>
+      </Suspense>
     </Router>
   );
 };

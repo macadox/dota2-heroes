@@ -1,3 +1,4 @@
+import "./index.css";
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
@@ -5,6 +6,8 @@ import { useGlobalContext } from "../../context";
 
 import Loading from "../../components/Loading";
 import Error from "../../components/Error";
+import Footer from "../../components/Footer";
+
 // Page Components
 import HeroHeader from "./components/HeroHeader";
 import HeroStats from "./components/HeroStats";
@@ -95,52 +98,56 @@ const HeroPage = () => {
     });
 
   return (
-    <div className='page-wrap'>
-      <section className='section section--hero'>
-        <Link className='btn btn--back' to='/'>
-          Back
-        </Link>
-        <div className='hero'>
-          <article className='hero__main'>
-            <HeroHeader hero={hero} />
-            <HeroAbilities
-              heroAbilities={heroesAbilities[hero.name]}
-              abilities={abilities}
-            />
-            <h3>Hero Stats</h3>
-            <HeroStats hero={hero} />
-          </article>
-          <article className='hero__lane-roles'>
-            <h3>Lane presence</h3>
-            <HeroPresenceTable laneRoles={data.laneRoles} />
-          </article>
-          <article className='hero__averages'>
-            <h3>Average results</h3>
-            <AverageResultsTable benchmark={data.benchmarks.result} />
-          </article>
-          <article className='hero__items'>
-            <h3>Popular items</h3>
-            <PopularItemsList
-              itemPopularity={data.itemPopularity}
-              items={items}
-              itemIds={itemIds}
-            />
-          </article>
-          <article className='hero__matchups hero__matchups--best'>
-            <h3>Best against</h3>
-            <HeroMatchups matchupList={mappedMatchups.slice(0, 8)} />
-          </article>
-          <article className='hero__matchups hero__matchups--worst'>
-            <h3>Worst against</h3>
-            <HeroMatchups matchupList={mappedMatchups.slice(-8).reverse()} />
-          </article>
-          <article className='hero__lore'>
-            <h3>Hero lore</h3>
-            <HeroLore heroLore={heroLore} hero={hero} />
-          </article>
-        </div>
-      </section>
-    </div>
+    <>
+      <div className='page-wrap'>
+        <section className='section section--hero'>
+          <Link className='btn btn--back' to='/'>
+            Back
+          </Link>
+          <div className='hero'>
+            <article className='hero__main'>
+              <HeroHeader hero={hero} />
+              <HeroAbilities
+                heroAbilities={heroesAbilities[hero.name]}
+                abilities={abilities}
+              />
+              <h3>Hero Stats</h3>
+              <HeroStats hero={hero} />
+            </article>
+            <article className='hero__lane-roles'>
+              <h3>Lane presence</h3>
+              <HeroPresenceTable laneRoles={data.laneRoles} />
+            </article>
+            <article className='hero__averages'>
+              <h3>Average results</h3>
+              <AverageResultsTable benchmark={data.benchmarks.result} />
+            </article>
+            <article className='hero__items'>
+              <h3>Popular items</h3>
+              <PopularItemsList
+                itemPopularity={data.itemPopularity}
+                items={items}
+                itemIds={itemIds}
+              />
+            </article>
+            <article className='hero__matchups hero__matchups--best'>
+              <h3>Best against</h3>
+              <HeroMatchups matchupList={mappedMatchups.slice(0, 8)} />
+            </article>
+            <article className='hero__matchups hero__matchups--worst'>
+              <h3>Worst against</h3>
+              <HeroMatchups matchupList={mappedMatchups.slice(-8).reverse()} />
+            </article>
+            <article className='hero__lore'>
+              <h3>Hero lore</h3>
+              <HeroLore heroLore={heroLore} hero={hero} />
+            </article>
+          </div>
+        </section>
+      </div>
+      {/* Footer included here for CLS  performance*/}
+      {!loading && <Footer />}
+    </>
   );
 };
 

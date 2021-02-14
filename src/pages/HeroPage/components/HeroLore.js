@@ -35,7 +35,7 @@ const HeroLore = ({ heroLore, hero }) => {
         {!expanded ? (
           <span className='lore__dots'>...</span>
         ) : (
-          <span className='lore__more'>{part2}</span>
+          <span className='lore__more'> {part2}</span>
         )}
       </p>
       <button

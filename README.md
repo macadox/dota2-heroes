@@ -6,10 +6,10 @@
 
 ## What I've learned
 
-- Forwarding ref
-- creating custom hooks
 - asynchronous fetching of data using reacts useEffect hook with Promise.all
-- 4 x 100 (Performance, Accesibility, Best Practices, SEO) in Lighthouse audit
+- React.forwardRef(() => {})
+- Creating customhook
+- 4 x 100 (Performance, Accesibility, Best Practices, SEO) Optimization in Lighthouse audit
 
 ## Todos
 

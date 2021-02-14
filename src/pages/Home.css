@@ -1,0 +1,260 @@
+.section--heroes {
+  padding: 3.2em 0;
+}
+
+.hero-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-gap: 1.4em;
+  list-style: none;
+  margin: 0 auto;
+  border-radius: 2px;
+  border: 2px solid var(--border-clr-dark);
+  box-shadow: 0 0 8px 3px rgb(13, 14, 14);
+  padding: 0.65em;
+  justify-items: center;
+}
+
+.hero-list__error {
+  color: var(--table-text);
+  font-size: 1.6rem;
+  padding: 0.65em;
+  text-align: center;
+}
+
+.card {
+  max-width: 33vw;
+  width: 100%;
+  transition: 0.15s ease-in-out;
+  outline: none;
+  position: relative;
+}
+
+.card:focus,
+.card:focus-within,
+.card:hover {
+  cursor: pointer;
+  box-shadow: 0 0 0 4px var(--focus-clr);
+}
+
+.card__attr {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: 28px;
+  height: 28px;
+  opacity: 0.9;
+  border-radius: 50%;
+}
+
+.card__url {
+  outline: none;
+  display: block;
+  min-height: 80px;
+}
+
+.card__portrait {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.card__title {
+  font-size: 1.4rem;
+  line-height: 95%;
+  color: var(--font-clr);
+  text-decoration: none;
+  padding: 0.1em 0;
+}
+
+@media (min-width: 1024px) {
+  .hero-list {
+    max-width: 1024px;
+    padding: 0.65em;
+  }
+}
+
+/* FILTER */
+
+.app-title {
+  margin: 0 0 0.75em;
+}
+
+.filters-wrap {
+  border: 2px solid var(--border-clr-dark);
+  box-shadow: 0 0 8px 3px rgb(13, 14, 14);
+  padding: 0.65em;
+  color: var(--font-clr-light);
+}
+
+.filters-wrap h2 {
+  font-weight: 400;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.filters-wrap h3 {
+  font-weight: 400;
+  font-size: 1.4rem;
+}
+
+.filters__advanced {
+  margin: 1em auto 0;
+}
+
+.search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0.65em 0;
+  width: 100%;
+}
+
+.search__form {
+  width: 100%;
+}
+
+.search__label {
+  display: block;
+  color: var(--font-clr-light);
+  text-align: left;
+  font-size: 1.4rem;
+  padding: 0.15em 0;
+}
+
+.search__input {
+  width: 100%;
+  height: 36px;
+  background: var(--table-light);
+  color: var(--font-clr-light);
+  border: 2px solid var(--border-clr-dark);
+  outline: none;
+  font-size: 1.6rem;
+  padding: 0.4em;
+}
+
+.search__input:focus {
+  border-color: var(--focus-clr);
+}
+
+@media (min-width: 1024px) {
+  .search {
+    max-width: 50%;
+  }
+}
+
+/* LISTBOX */
+
+.listbox {
+  position: relative;
+  display: inline-block;
+}
+
+.listbox__button {
+  padding: 0.65em;
+  border: 2px solid var(--border-clr-dark);
+  background: var(--table-light);
+  color: var(--font-clr-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5em;
+  outline: none;
+  z-index: 101;
+  cursor: pointer;
+  min-width: 120px;
+}
+
+.listbox__button:focus {
+  border-color: var(--focus-clr);
+}
+
+.listbox__caret {
+  font-size: 1.6rem;
+  color: var(--font-clr);
+}
+
+.listbox__list {
+  position: absolute;
+  top: calc(100% - 2px);
+  left: 0;
+  list-style: none;
+  border: 2px solid var(--border-clr-dark);
+  width: 100%;
+  z-index: 100;
+  background-color: var(--table-light);
+}
+
+.listbox__option {
+  padding: 0.65em;
+  font-size: 1.3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.listbox__option:hover,
+.listbox__option[aria-selected="true"] {
+  background-color: var(--table-dark);
+  cursor: pointer;
+}
+
+.listbox__option[aria-selected="true"] {
+  box-shadow: 0 0 0 2px var(--focus-clr);
+}
+
+.listbox__option--selected {
+  background-color: var(--table-dark);
+}
+
+.listbox__check {
+  font-size: 1.1rem;
+  color: #729233;
+}
+
+.filters {
+  display: grid;
+  justify-items: start;
+}
+
+/* Grid to switch order for A11Y */
+.filters__sort {
+  grid-row: 1 /2;
+}
+
+.filters__inner {
+  width: 100%;
+  grid-row: 2/3;
+}
+
+.filters__advanced {
+  grid-row: 3/4;
+}
+
+.filters__inner--hidden {
+  display: none;
+}
+
+.filters__inner-center {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65em;
+}
+
+.filters > * + * {
+  margin-top: 0.65em;
+}
+
+@media (min-width: 1024px) {
+  .filters-wrap {
+    max-width: 1024px;
+    margin: 0 auto;
+  }
+
+  .filters__inner-center {
+    width: 100%;
+    align-items: flex-start;
+  }
+}
