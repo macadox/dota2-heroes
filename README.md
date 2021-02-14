@@ -4,6 +4,8 @@
 
 ## Demo
 
+[DEMO](https://dota2-heroes-react.macadox.vercel.app/)
+
 ## What I've learned
 
 - asynchronous fetching of data using reacts useEffect hook with Promise.all

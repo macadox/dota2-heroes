@@ -27,12 +27,12 @@ const HeroLore = ({ heroLore, hero }) => {
       return reducer;
     }, [])
     .map((item) => item.join(" "));
-
+  console.log(part2);
   return (
     <div className='lore'>
       <p className='lore__content'>
         {part1}
-        {!expanded ? (
+        {!expanded && part2 ? (
           <span className='lore__dots'>...</span>
         ) : (
           <span className='lore__more'> {part2}</span>
@@ -42,7 +42,7 @@ const HeroLore = ({ heroLore, hero }) => {
         onClick={() => setExpanded(!expanded)}
         className='lore__show-more btn--alt'
       >
-        {!expanded ? "Show More" : "Show Less"}
+        {part2 && (!expanded ? "Show More" : "Show Less")}
       </button>
     </div>
   );
