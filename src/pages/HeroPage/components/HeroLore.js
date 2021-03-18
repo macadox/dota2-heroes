@@ -27,8 +27,8 @@ const HeroLore = ({ heroLore, hero }) => {
       return reducer;
     }, [])
     .map((item) => item.join(" "));
-  console.log(part2);
-  return (
+
+    return (
     <div className='lore'>
       <p className='lore__content'>
         {part1}
