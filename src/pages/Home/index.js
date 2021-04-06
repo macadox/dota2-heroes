@@ -14,6 +14,7 @@ const Home = () => {
     handleAttributeFilter,
     handleRangeFilter,
     handleRoleFilter,
+    filterByName,
     toggleReverse,
     reverse,
     sort,
@@ -32,7 +33,7 @@ const Home = () => {
           <div className='filters-wrap'>
             <h2>Filter heroes</h2>
             <div className='search'>
-              <SearchBar />
+              <SearchBar filterByName={filterByName} />
             </div>
             <div className='filters'>
               <div className='filters__sort'>

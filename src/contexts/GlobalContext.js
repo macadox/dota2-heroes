@@ -35,7 +35,7 @@ const resources = [
 ];
 
 export const AppProvider = ({ children }) => {
-  const [term, setTerm] = useState("");
+  const [nameFilter, setNameFilter] = useState("");
   const [attributeFilter, setAttributeFilter] = useState(["agi", "str", "int"]);
   const [rangeFilter, setRangeFilter] = useState(["Melee", "Ranged"]);
   const [roleFilter, setRoleFilter] = useState([]);
@@ -44,8 +44,8 @@ export const AppProvider = ({ children }) => {
   const [showFilters, setShowFilters] = useState(false);
   const [loading, data] = useFetch(resources);
 
-  const type = (val) => {
-    setTerm(val);
+  const filterByName = (val) => {
+    setNameFilter(val);
   };
 
   const handleSort = (value) => {
@@ -82,7 +82,7 @@ export const AppProvider = ({ children }) => {
         CDN_URI,
         API_URI,
         API_KEY,
-        term,
+        term: nameFilter,
         loading,
         sort,
         reverse,
@@ -95,7 +95,7 @@ export const AppProvider = ({ children }) => {
         abilities: data && data.abilities,
         items: data && data.items,
         itemIds: data && data.itemIds,
-        type,
+        filterByName,
         handleSort,
         handleAttributeFilter,
         handleRangeFilter,

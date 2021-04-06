@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-import { useGlobalContext } from "../../contexts/GlobalContext";
+const SearchBar = ({ filterByName }) => {
+  const [term, setTerm] = useState("");
 
-const SearchBar = () => {
-  const { term, type } = useGlobalContext();
+  const type = (value) => {
+    setTerm(value);
+  };
+
+  useEffect(() => {
+    filterByName(term);
+  }, [term, filterByName]);
 
   return (
     <>
