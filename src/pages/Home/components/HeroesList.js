@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Hero from "./Hero";
-import { keys } from "../utils";
-import { useGlobalContext } from "../context";
+import keys from "../../../utils/keys";
+import { useGlobalContext } from "../../../contexts/GlobalContext";
 
 const HeroesList = () => {
   const {
@@ -163,11 +163,7 @@ const HeroesList = () => {
   }, []);
 
   return (
-    <ul
-      className='hero-list'
-      aria-label='heroes list'
-      ref={gridRef}
-    >
+    <ul className='hero-list' aria-label='heroes list' ref={gridRef}>
       {filteredHeroes.length === 0 ? (
         <span className='hero-list__error'>
           There are no heroes matching that criteria...

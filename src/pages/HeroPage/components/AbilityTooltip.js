@@ -1,6 +1,6 @@
 import React from "react";
 import cooldown from "../../../assets/img/cooldown.png";
-import { joinDescription } from "../../../utils";
+import joinDescription from "../../../utils/joinDescription";
 
 const AbilityTooltip = ({ ability, ...props }, ref) => {
   return (
@@ -45,10 +45,7 @@ const AbilityTooltip = ({ ability, ...props }, ref) => {
             else
               return (
                 <p className='ability__attr' key={i}>
-                  {a.header}{" "}
-                  <span>
-                    {joinDescription(a.value, " / ")}
-                  </span>
+                  {a.header} <span>{joinDescription(a.value, " / ")}</span>
                 </p>
               );
           })}
@@ -60,17 +57,13 @@ const AbilityTooltip = ({ ability, ...props }, ref) => {
                   alt='cooldown'
                   className='ability__cd-icon'
                 />
-                <span>
-                  {joinDescription(ability.cd, " / ")}
-                </span>
+                <span>{joinDescription(ability.cd, " / ")}</span>
               </div>
             )}
             {ability.mc && (
               <div className='ability__mc'>
                 <div className='ability__mc-icon'></div>
-                <span>
-                  {joinDescription(ability.mc, " / ")}
-                </span>
+                <span>{joinDescription(ability.mc, " / ")}</span>
               </div>
             )}
           </div>

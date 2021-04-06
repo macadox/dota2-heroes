@@ -1,4 +1,4 @@
-export const handlePosition = (triggerRef, tooltipRef) => {
+const handlePosition = (triggerRef, tooltipRef) => {
   const screenPadding = 10;
   const screenWidth = document.body.getBoundingClientRect();
 
@@ -26,17 +26,4 @@ export const handlePosition = (triggerRef, tooltipRef) => {
   }
 };
 
-export const joinDescription = (data, delimiter) => {
-  return Array.isArray(data) ? data.join(delimiter) : data;
-};
-
-export const keys = {
-  left: 37,
-  up: 38,
-  right: 39,
-  down: 40,
-  enter: 13,
-  space: 32,
-  end: 35,
-  home: 36,
-};
+export default handlePosition;

@@ -2,11 +2,11 @@ import "./index.css";
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
-import { useGlobalContext } from "../../context";
+import { useGlobalContext } from "../../contexts/GlobalContext";
 
-import Loading from "../../components/Loading";
-import Error from "../../components/Error";
-import Footer from "../../components/Footer";
+import Loading from "../common/Loading";
+import Error from "../common/Error";
+import Footer from "../common/Footer";
 
 // Page Components
 import HeroHeader from "./components/HeroHeader";

@@ -1,6 +1,6 @@
 import React from "react";
-import { useGlobalContext } from "../../../context";
-import { joinDescription } from "../../../utils";
+import { useGlobalContext } from "../../../contexts/GlobalContext";
+import joinDescription from "../../../utils/joinDescription";
 import { FaCoins } from "react-icons/fa";
 import cooldown from "../../../assets/img/cooldown.png";
 

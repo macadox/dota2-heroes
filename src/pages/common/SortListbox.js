@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import Option from "../components/Option";
+import ListboxOption from "./ListboxOption";
 
-import { keys } from "../utils";
+import keys from "../../utils/keys";
 import { FaCaretDown } from "react-icons/fa";
 
 const SortListbox = ({
@@ -130,7 +130,7 @@ const SortListbox = ({
           {options.map((option) => {
             const optionId = `elem_list_${option.value}`;
             return (
-              <Option
+              <ListboxOption
                 key={option.value}
                 id={optionId}
                 // get rid off selected

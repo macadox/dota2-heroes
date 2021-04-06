@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useGlobalContext } from "../context";
+import { useGlobalContext } from "../../contexts/GlobalContext";
 
 const SearchBar = () => {
   const { term, type } = useGlobalContext();
@@ -17,7 +17,7 @@ const SearchBar = () => {
           id='search'
           className='search__input'
           value={term}
-          placeholder="Type hero name to search..."
+          placeholder='Type hero name to search...'
           onChange={(e) => type(e.target.value)}
         />
       </form>

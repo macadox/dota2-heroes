@@ -2,7 +2,7 @@ import "./App.css";
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // Loader
-import Loader from "./components/Loading";
+import Loader from "./pages/common/Loading";
 
 // Pages
 const Home = lazy(() => import("./pages/Home"));

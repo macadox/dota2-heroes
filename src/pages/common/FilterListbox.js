@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import Option from "../components/Option";
+import ListboxOption from "./ListboxOption";
 
-import { keys } from "../utils";
+import keys from "../../utils/keys";
 import { FaCaretDown } from "react-icons/fa";
 
 const FilterListbox = ({
@@ -136,7 +136,7 @@ const FilterListbox = ({
           {options.map((option) => {
             const optionId = `elem_list_${option.value}`;
             return (
-              <Option
+              <ListboxOption
                 id={optionId}
                 key={option.value}
                 onClick={handleClick}

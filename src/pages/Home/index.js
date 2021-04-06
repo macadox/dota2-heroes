@@ -1,12 +1,12 @@
 import "./Home.css";
 import React from "react";
-import HeroesList from "../components/HeroesList";
-import Loading from "../components/Loading";
-import SearchBar from "../components/SearchBar";
-import FilterListbox from "../components/FilterListbox";
-import SortListbox from "../components/SortListbox";
-import { useGlobalContext } from "../context";
-import Footer from "../components/Footer";
+import HeroesList from "./components/HeroesList";
+import Loading from "../common/Loading";
+import SearchBar from "../common/SearchBar";
+import FilterListbox from "../common/FilterListbox";
+import SortListbox from "../common/SortListbox";
+import { useGlobalContext } from "../../contexts/GlobalContext";
+import Footer from "../common/Footer";
 const Home = () => {
   const {
     loading,

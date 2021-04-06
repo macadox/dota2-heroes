@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { useFetch } from "./hooks/useFetch";
+import { useFetch } from "../hooks/useFetch";
 
 const AppContext = React.createContext();
 
@@ -41,7 +41,7 @@ export const AppProvider = ({ children }) => {
   const [roleFilter, setRoleFilter] = useState([]);
   const [sort, setSort] = useState("localized_name");
   const [reverse, setReverse] = useState(false);
-  const [showFilters, setShowFilters] = useState(false); 
+  const [showFilters, setShowFilters] = useState(false);
   const [loading, data] = useFetch(resources);
 
   const type = (val) => {

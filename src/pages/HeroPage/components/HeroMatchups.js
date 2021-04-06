@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { useGlobalContext } from "../../../context";
+import { useGlobalContext } from "../../../contexts/GlobalContext";
 
 const HeroMatchups = ({ matchupList = [] }) => {
   const { CDN_URI } = useGlobalContext();

@@ -1,7 +1,7 @@
 import React from "react";
-import Error from "../components/Error";
-import { useGlobalContext } from "../context";
-import Footer from "../components/Footer";
+import { useGlobalContext } from "../../contexts/GlobalContext";
+import Error from "../common/Error";
+import Footer from "../common/Footer";
 
 const ErrorPage = () => {
   const { loading } = useGlobalContext();

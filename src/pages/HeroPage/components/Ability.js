@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import AbilityTooltip from "./AbilityTooltip";
-import { handlePosition } from "../../../utils";
+import handlePosition from "../../../utils/handlePosition";
 
-import { useGlobalContext } from "../../../context";
+import { useGlobalContext } from "../../../contexts/GlobalContext";
 
 const Ability = ({ ability }) => {
   const [show, setShow] = useState(false);

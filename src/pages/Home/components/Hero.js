@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useGlobalContext } from "../context";
+import { useGlobalContext } from "../../../contexts/GlobalContext";
 
-import agiIcon from "../assets/img/agi-min.jpg";
-import intIcon from "../assets/img/int-min.jpg";
-import strIcon from "../assets/img/str-min.jpg";
+import agiIcon from "../../../assets/img/agi-min.jpg";
+import intIcon from "../../../assets/img/int-min.jpg";
+import strIcon from "../../../assets/img/str-min.jpg";
 
 const Hero = ({ hero, tabIndex, ...props }) => {
   const { localized_name, img, primary_attr, id } = hero;
@@ -16,7 +16,6 @@ const Hero = ({ hero, tabIndex, ...props }) => {
       ? intIcon
       : strIcon;
 
-
   return (
     <li className='card' {...props}>
       <Link
@@ -25,12 +24,17 @@ const Hero = ({ hero, tabIndex, ...props }) => {
         style={{ textDecoration: "none" }}
         className='card__url'
       >
-        <img src={icon} alt={primary_attr} className='card__attr' loading="lazy" />
+        <img
+          src={icon}
+          alt={primary_attr}
+          className='card__attr'
+          loading='lazy'
+        />
         <img
           src={`${CDN_URI}${img}`}
           alt={localized_name}
           className='card__portrait'
-          loading="lazy"
+          loading='lazy'
         />
         <p className='card__title'>{localized_name}</p>
       </Link>

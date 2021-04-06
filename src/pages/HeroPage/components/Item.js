@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import ItemTooltip from "./ItemTooltip";
 
-import { handlePosition } from "../../../utils";
-import { useGlobalContext } from "../../../context";
+import handlePosition from "../../../utils/handlePosition";
+import { useGlobalContext } from "../../../contexts/GlobalContext";
 
 const Item = ({ item }) => {
   const { id, img, name, quality } = item;
