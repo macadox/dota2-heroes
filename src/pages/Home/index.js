@@ -15,7 +15,7 @@ const Home = () => {
     handleRangeFilter,
     handleRoleFilter,
     filterByName,
-    toggleReverse,
+    handleReverse,
     reverse,
     sort,
     attributeFilter,
@@ -39,7 +39,6 @@ const Home = () => {
               <div className='filters__sort'>
                 <h3>Sort data</h3>
                 <SortListbox
-                  defaultText='Sort by'
                   options={[
                     { label: "Name", value: "localized_name" },
                     { label: "ID", value: "id" },
@@ -48,8 +47,8 @@ const Home = () => {
                     { label: "Attack rate", value: "attack_rate" },
                     { label: "Turn rate", value: "turn_rate" },
                   ]}
-                  callback={handleSort}
-                  toggleReverse={toggleReverse}
+                  sortBy={handleSort}
+                  handleReverse={handleReverse}
                   reverse={reverse}
                   defaultSort={sort}
                 />

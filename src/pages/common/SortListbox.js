@@ -5,12 +5,11 @@ import keys from "../../utils/keys";
 import { FaCaretDown } from "react-icons/fa";
 
 const SortListbox = ({
-  defaultText,
   defaultSort,
   options = [],
-  callback,
+  sortBy,
   reverse,
-  toggleReverse,
+  handleReverse,
 }) => {
   const [value, setValue] = useState(defaultSort);
   const [activeDescendant, setActiveDescendant] = useState(
@@ -18,7 +17,7 @@ const SortListbox = ({
   );
   const [activeIndex, setActiveIndex] = useState(0);
   const [listboxOpen, setListboxOpen] = useState(false);
-  const [label, setLabel] = useState("");
+  const [label, setLabel] = useState(options[0].label);
   const listboxRef = useRef(null);
 
   const handleClick = (value, target) => {
@@ -28,6 +27,14 @@ const SortListbox = ({
     setActiveDescendant(target.id);
     setListboxOpen(false);
     toggleReverse(target);
+  };
+
+  const toggleReverse = (target) => {
+    if (target.getAttribute("aria-selected") === "true") {
+      handleReverse(!reverse);
+    } else {
+      handleReverse(false);
+    }
   };
 
   const handleClickOutside = (e) => {
@@ -91,14 +98,16 @@ const SortListbox = ({
   }, [value, options]);
 
   useEffect(() => {
-    setActiveDescendant(`elem_list_${options[activeIndex].value}`);
+    if (options[activeIndex]) {
+      setActiveDescendant(`elem_list_${options[activeIndex].value}`);
+    }
   }, [activeIndex, options]);
 
   useEffect(() => {
-    if (callback) {
-      callback(value);
+    if (sortBy) {
+      sortBy(value);
     }
-  }, [value, callback]);
+  }, [value, sortBy]);
 
   useEffect(() => {
     document.addEventListener("click", handleClickOutside);
@@ -117,7 +126,8 @@ const SortListbox = ({
         onClick={() => setListboxOpen(!listboxOpen)}
         className='listbox__button'
       >
-        {label || defaultText} {reverse ? "(desc)" : "(asc)"}
+        {label || "Sort By"}
+        {label && (reverse ? " (desc)" : " (asc)")}
         <FaCaretDown className='listbox__caret' />
       </button>
       {listboxOpen && (

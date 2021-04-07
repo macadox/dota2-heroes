@@ -66,14 +66,15 @@ describe("FilterListbox workflow", () => {
   });
 
   it("should close the listbox items list on click outside and on cick on listbox button", () => {
-    const options = [
-      { label: "Agility", value: "agi" },
-      { label: "Strength", value: "str" },
-      { label: "Intelligence", value: "int" },
-    ];
-
     render(
-      <FilterListbox options={options} defaultFilter={["agi", "str", "int"]} />
+      <FilterListbox
+        options={[
+          { label: "Agility", value: "agi" },
+          { label: "Strength", value: "str" },
+          { label: "Intelligence", value: "int" },
+        ]}
+        defaultFilter={["agi", "str", "int"]}
+      />
     );
 
     const listboxButton = screen.getByRole("button");
@@ -132,5 +133,29 @@ describe("FilterListbox workflow", () => {
     expect(listboxButton).toHaveTextContent("Disabler, Escape, Initiator");
     userEvent.click(initiatorOption);
     expect(listboxButton).toHaveTextContent("Disabler, Escape");
+  });
+
+  it("should fire a callback whenever listbox values are changed", () => {
+    const mockFilter = jest.fn();
+
+    render(
+      <FilterListbox
+        options={[
+          { label: "Agility", value: "agi" },
+          { label: "Strength", value: "str" },
+          { label: "Intelligence", value: "int" },
+        ]}
+        defaultFilter={["agi", "str", "int"]}
+        callback={mockFilter}
+      />
+    );
+
+    const listboxButton = screen.getByRole("button");
+    userEvent.click(listboxButton);
+
+    const agilityOption = screen.getByRole("option", { name: /agility/i });
+    userEvent.click(agilityOption);
+
+    expect(mockFilter).toHaveBeenCalled();
   });
 });

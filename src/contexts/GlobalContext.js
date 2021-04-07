@@ -64,12 +64,8 @@ export const AppProvider = ({ children }) => {
     setRoleFilter(values);
   };
 
-  const toggleReverse = (target) => {
-    if (target.getAttribute("aria-selected") === "true") {
-      setReverse(!reverse);
-    } else {
-      setReverse(false);
-    }
+  const handleReverse = (bool) => {
+    setReverse(bool);
   };
 
   const toggleFilters = () => {
@@ -100,7 +96,7 @@ export const AppProvider = ({ children }) => {
         handleAttributeFilter,
         handleRangeFilter,
         handleRoleFilter,
-        toggleReverse,
+        handleReverse,
         showFilters,
         toggleFilters,
       }}
