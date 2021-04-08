@@ -1,15 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import ItemTooltip from "./ItemTooltip";
 
-import handlePosition from "../../../utils/handlePosition";
-import { useGlobalContext } from "../../../contexts/GlobalContext";
-
-const Item = ({ item }) => {
+const Item = ({ item, handlePosition, itemIds, items, CDN_URI }) => {
   const { id, img, name, quality } = item;
   const [show, setShow] = useState(false);
   const itemRef = useRef(null);
   const tooltipRef = useRef(null);
-  const { CDN_URI, items, itemIds } = useGlobalContext();
 
   const showTooltip = () => {
     setShow(true);
@@ -17,7 +13,7 @@ const Item = ({ item }) => {
   };
 
   const hideTooltip = () => {
-    setTimeout(() => setShow(false), 200);
+    setShow(false);
   };
 
   useEffect(() => {
@@ -52,6 +48,7 @@ const Item = ({ item }) => {
           ref={tooltipRef}
           item={items[itemIds[id]]}
           id={`elem_item_${id}`}
+          CDN_URI={CDN_URI}
         />
       )}
     </div>

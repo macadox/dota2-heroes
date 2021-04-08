@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Item from "./Item";
 
-const PopularItemsList = ({ itemPopularity, items, itemIds }) => {
+const PopularItemsList = ({
+  itemPopularity,
+  items,
+  itemIds,
+  CDN_URI,
+  handlePosition,
+}) => {
   const [results, setResults] = useState({});
   const [isMounted, setIsMounted] = useState(false);
 
@@ -61,7 +67,16 @@ const PopularItemsList = ({ itemPopularity, items, itemIds }) => {
             </h4>
             <div className='stage__items'>
               {stage.map((item) => {
-                return <Item key={item.id} item={item} />;
+                return (
+                  <Item
+                    key={item.id}
+                    handlePosition={handlePosition}
+                    item={item}
+                    items={items}
+                    itemIds={itemIds}
+                    CDN_URI={CDN_URI}
+                  />
+                );
               })}
             </div>
           </div>

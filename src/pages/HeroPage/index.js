@@ -29,6 +29,7 @@ const HeroPage = () => {
     abilities,
     items,
     itemIds,
+    CDN_URI,
     API_URI,
     API_KEY,
   } = useGlobalContext();
@@ -130,6 +131,7 @@ const HeroPage = () => {
                 itemPopularity={data.itemPopularity}
                 items={items}
                 itemIds={itemIds}
+                CDN_URI={CDN_URI}
                 handlePosition={handlePosition}
               />
             </article>

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useFetch } from "../hooks/useFetch";
 
-const AppContext = React.createContext();
+export const AppContext = React.createContext();
 
 const API_KEY = `19115D982DBF9D2E9DFD15CE88B443BD`;
 const API_URI = `https://api.opendota.com/api/`;

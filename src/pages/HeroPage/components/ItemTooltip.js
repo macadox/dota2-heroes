@@ -4,9 +4,7 @@ import joinDescription from "../../../utils/joinDescription";
 import { FaCoins } from "react-icons/fa";
 import cooldown from "../../../assets/img/cooldown.png";
 
-const ItemTooltip = ({ item, ...props }, ref) => {
-  const { CDN_URI } = useGlobalContext();
-
+const ItemTooltip = ({ item, CDN_URI, ...props }, ref) => {
   return (
     <div className='tooltip-wrap' ref={ref} {...props}>
       <div className='tooltip tooltip--item' id={`${item.id}_tooltip`}>
