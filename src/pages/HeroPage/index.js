@@ -3,6 +3,7 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
 import { useGlobalContext } from "../../contexts/GlobalContext";
+import handlePosition from "../../utils/handlePosition";
 
 import Loading from "../common/Loading";
 import Error from "../common/Error";
@@ -110,6 +111,7 @@ const HeroPage = () => {
               <HeroAbilities
                 heroAbilities={heroesAbilities[hero.name]}
                 abilities={abilities}
+                handlePosition={handlePosition}
               />
               <h3>Hero Stats</h3>
               <HeroStats hero={hero} />
@@ -128,6 +130,7 @@ const HeroPage = () => {
                 itemPopularity={data.itemPopularity}
                 items={items}
                 itemIds={itemIds}
+                handlePosition={handlePosition}
               />
             </article>
             <article className='hero__matchups hero__matchups--best'>

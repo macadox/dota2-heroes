@@ -1,10 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import AbilityTooltip from "./AbilityTooltip";
-import handlePosition from "../../../utils/handlePosition";
 
 import { useGlobalContext } from "../../../contexts/GlobalContext";
 
-const Ability = ({ ability }) => {
+const Ability = ({ ability, handlePosition }) => {
   const [show, setShow] = useState(false);
   const abilityRef = useRef(null);
   const tooltipRef = useRef(null);
@@ -15,7 +14,7 @@ const Ability = ({ ability }) => {
   };
 
   const hideTooltip = () => {
-    setTimeout(() => setShow(false), 200);
+    setShow(false);
   };
 
   useEffect(() => {
