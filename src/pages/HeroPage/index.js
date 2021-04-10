@@ -54,12 +54,6 @@ const HeroPage = () => {
     ],
     id
   );
-  console.log(
-    heroLore &&
-      Object.entries(heroLore).sort(
-        ([aName, aVal], [bName, bVal]) => bVal.length - aVal.length
-      )
-  );
 
   if (loading || heroLoading) return <Loading />;
 
