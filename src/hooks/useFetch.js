@@ -21,7 +21,6 @@ export const useFetch = (objs, id) => {
           const val = item;
           dataObj[key] = val;
         });
-
         setData(dataObj);
         setLoading(false);
       } catch (e) {
