@@ -3,8 +3,16 @@ import React, { useState } from "react";
 const HeroLore = ({ heroLore, hero }) => {
   const [expanded, setExpanded] = useState(false);
 
+  if (!hero || !heroLore)
+    return (
+      <div className='lore'>
+        <p className='lore__content no-data'>Hero has no lore added yet.</p>
+      </div>
+    );
+
   const regex = new RegExp(/(?<=npc_dota_hero_)\w+/, "");
   const heroAlias = hero.name.match(regex)[0];
+
   const lore = heroLore[heroAlias];
 
   if (!lore)
@@ -28,7 +36,7 @@ const HeroLore = ({ heroLore, hero }) => {
     }, [])
     .map((item) => item.join(" "));
 
-    return (
+  return (
     <div className='lore'>
       <p className='lore__content'>
         {part1}
