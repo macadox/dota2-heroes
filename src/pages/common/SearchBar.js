@@ -9,7 +9,7 @@ const SearchBar = ({ filterByName }) => {
 
   useEffect(() => {
     filterByName(term);
-  }, [term, filterByName]);
+  }, [term]);
 
   return (
     <>

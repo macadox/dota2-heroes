@@ -29,6 +29,9 @@ export const useFetch = (objs, id) => {
       }
     };
     fetchData();
+    return () => {
+      setData({});
+    };
     // eslint-disable-next-line
   }, [id]);
 

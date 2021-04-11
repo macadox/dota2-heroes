@@ -1,7 +1,9 @@
 import { rest } from "msw";
 
+const API_URI = `https://api.opendota.com/api`;
+
 export const handlers = [
-  rest.get("https://api.opendota.com/api/heroStats", (req, res, ctx) => {
+  rest.get(`${API_URI}/heroStats`, (req, res, ctx) => {
     return res(
       ctx.json([
         {
@@ -297,6 +299,7 @@ export const handlers = [
           turn_rate: 0.6,
           cm_enabled: true,
           legs: 2,
+          hero_id: 18,
         },
         {
           id: 19,
@@ -323,5 +326,20 @@ export const handlers = [
         },
       ])
     );
+  }),
+  rest.get(`${API_URI}/constants/hero_abilities`, (req, res, ctx) => {
+    return res(ctx.json({}));
+  }),
+  rest.get(`${API_URI}/constants/hero_lore`, (req, res, ctx) => {
+    return res(ctx.json({}));
+  }),
+  rest.get(`${API_URI}/constants/abilities`, (req, res, ctx) => {
+    return res(ctx.json({}));
+  }),
+  rest.get(`${API_URI}/constants/items`, (req, res, ctx) => {
+    return res(ctx.json({}));
+  }),
+  rest.get(`${API_URI}/constants/item_ids`, (req, res, ctx) => {
+    return res(ctx.json({}));
   }),
 ];

@@ -12,6 +12,7 @@ const HeroFilterPanel = () => {
     handleRoleFilter,
     filterByName,
     handleReverse,
+    resetFilters,
     reverse,
     sort,
     attributeFilter,
@@ -45,53 +46,54 @@ const HeroFilterPanel = () => {
             defaultSort={sort}
           />
         </div>
-        <button onClick={toggleFilters} className='btn--alt filters__advanced'>
-          {showFilters ? "hide filters" : "show filters"}
+        <button onClick={toggleFilters} className='btn show-btn'>
+          {showFilters ? "Hide Filters" : "Show Filters"}
         </button>
-        <div
-          className={`filters__inner ${
-            !showFilters ? "filters__inner--hidden" : ""
-          }`}
-        >
-          <h3>Filter data</h3>
-          <div className='filters__inner-center'>
-            <FilterListbox
-              defaultText='Attributes'
-              options={[
-                { label: "Agility", value: "agi" },
-                { label: "Strength", value: "str" },
-                { label: "Intelligence", value: "int" },
-              ]}
-              callback={handleAttributeFilter}
-              defaultFilter={attributeFilter}
-            />
-            <FilterListbox
-              defaultText='Range'
-              options={[
-                { label: "Melee", value: "Melee" },
-                { label: "Ranged", value: "Ranged" },
-              ]}
-              callback={handleRangeFilter}
-              defaultFilter={rangeFilter}
-            />
-            <FilterListbox
-              defaultText='Roles'
-              options={[
-                { label: "Carry", value: "Carry" },
-                { label: "Disabler", value: "Disabler" },
-                { label: "Durable", value: "Durable" },
-                { label: "Escape", value: "Escape" },
-                { label: "Initiator", value: "Initiator" },
-                { label: "Jungler", value: "Jungler" },
-                { label: "Nuker", value: "Nuker" },
-                { label: "Pusher", value: "Pusher" },
-                { label: "Support", value: "Support" },
-              ]}
-              callback={handleRoleFilter}
-              defaultFilter={roleFilter}
-            />
+        {showFilters && (
+          <div className={`filters__inner`}>
+            <h3>Filter data</h3>
+            <div className='filters__inner-center'>
+              <FilterListbox
+                defaultText='Attributes'
+                options={[
+                  { label: "Agility", value: "agi" },
+                  { label: "Strength", value: "str" },
+                  { label: "Intelligence", value: "int" },
+                ]}
+                callback={handleAttributeFilter}
+                filter={attributeFilter}
+              />
+              <FilterListbox
+                defaultText='Range'
+                options={[
+                  { label: "Melee", value: "Melee" },
+                  { label: "Ranged", value: "Ranged" },
+                ]}
+                callback={handleRangeFilter}
+                filter={rangeFilter}
+              />
+              <FilterListbox
+                defaultText='Roles'
+                options={[
+                  { label: "Carry", value: "Carry" },
+                  { label: "Disabler", value: "Disabler" },
+                  { label: "Durable", value: "Durable" },
+                  { label: "Escape", value: "Escape" },
+                  { label: "Initiator", value: "Initiator" },
+                  { label: "Jungler", value: "Jungler" },
+                  { label: "Nuker", value: "Nuker" },
+                  { label: "Pusher", value: "Pusher" },
+                  { label: "Support", value: "Support" },
+                ]}
+                callback={handleRoleFilter}
+                filter={roleFilter}
+              />
+              <button className='btn btn-reset' onClick={resetFilters}>
+                Reset Filters
+              </button>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

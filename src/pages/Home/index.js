@@ -7,7 +7,7 @@ import Loading from "../common/Loading";
 import { useGlobalContext } from "../../contexts/GlobalContext";
 import Footer from "../common/Footer";
 const Home = () => {
-  const { loading } = useGlobalContext();
+  const { loading, heroes } = useGlobalContext();
 
   return (
     <>
@@ -20,7 +20,7 @@ const Home = () => {
           <Loading />
         ) : (
           <section className='section section--heroes'>
-            <HeroesList />
+            <HeroesList heroes={heroes} />
           </section>
         )}
       </div>

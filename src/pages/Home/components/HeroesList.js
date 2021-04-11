@@ -3,9 +3,8 @@ import Hero from "./Hero";
 import keys from "../../../utils/keys";
 import { useGlobalContext } from "../../../contexts/GlobalContext";
 
-const HeroesList = () => {
+const HeroesList = ({ heroes }) => {
   const {
-    heroes,
     sort,
     reverse,
     attributeFilter,
@@ -170,10 +169,11 @@ const HeroesList = () => {
         </span>
       ) : (
         filteredHeroes.map((h, i) => {
-          const { id, localized_name, primary_attr, img } = h;
+          const { id, localized_name, primary_attr, img, hero_id } = h;
+
           return (
             <Hero
-              key={id}
+              key={hero_id}
               tabIndex={i === activeIndex ? 0 : -1}
               hero={{ localized_name, primary_attr, img, id }}
               onKeyDown={handleKeyDown}

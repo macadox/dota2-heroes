@@ -107,7 +107,7 @@ const SortListbox = ({
     if (sortBy) {
       sortBy(value);
     }
-  }, [value, sortBy]);
+  }, [value]);
 
   useEffect(() => {
     document.addEventListener("click", handleClickOutside);

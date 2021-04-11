@@ -4,13 +4,8 @@ import ListboxOption from "./ListboxOption";
 import keys from "../../utils/keys";
 import { FaCaretDown } from "react-icons/fa";
 
-const FilterListbox = ({
-  defaultText,
-  options = [],
-  callback,
-  defaultFilter,
-}) => {
-  const [values, setValues] = useState(defaultFilter);
+const FilterListbox = ({ defaultText, options = [], callback, filter }) => {
+  const [values, setValues] = useState(filter);
   const [activeDescendant, setActiveDescendant] = useState(
     `elem_list_${options[0].value}`
   );
@@ -90,13 +85,14 @@ const FilterListbox = ({
   };
 
   useEffect(() => {
+    setValues(filter);
+  }, [filter]);
+
+  useEffect(() => {
     if (callback) {
-      callback(
-        values,
-        options.map((o) => o.value)
-      );
+      callback(values);
     }
-  }, [values, callback, options]);
+  }, [values]);
 
   useEffect(() => {
     setActiveDescendant(`elem_list_${options[activeIndex].value}`);
@@ -129,7 +125,7 @@ const FilterListbox = ({
         <ul
           className='listbox__list'
           role='listbox'
-          aria-labelledby={"todo"}
+          aria-label={defaultText}
           tabIndex={-1}
           aria-activedescendant={activeDescendant}
         >

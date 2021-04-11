@@ -62,6 +62,7 @@ h4 {
   font-size: 1.4em;
   transition: 0.15s ease-in-out;
   outline: none;
+  cursor: pointer;
 }
 
 .btn--alt {

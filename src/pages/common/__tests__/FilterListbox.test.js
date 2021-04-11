@@ -11,7 +11,7 @@ describe("FilterListbox workflow", () => {
           { label: "Strength", value: "str" },
           { label: "Intelligence", value: "int" },
         ]}
-        defaultFilter={["agi", "str", "int"]}
+        filter={["agi", "str", "int"]}
       />
     );
 
@@ -34,7 +34,7 @@ describe("FilterListbox workflow", () => {
           { label: "Pusher", value: "Pusher" },
           { label: "Support", value: "Support" },
         ]}
-        defaultFilter={[]}
+        filter={[]}
       />
     );
 
@@ -49,9 +49,7 @@ describe("FilterListbox workflow", () => {
       { label: "Intelligence", value: "int" },
     ];
 
-    render(
-      <FilterListbox options={options} defaultFilter={["agi", "str", "int"]} />
-    );
+    render(<FilterListbox options={options} filter={["agi", "str", "int"]} />);
 
     const listboxButton = screen.getByRole("button");
     userEvent.click(listboxButton);
@@ -73,7 +71,7 @@ describe("FilterListbox workflow", () => {
           { label: "Strength", value: "str" },
           { label: "Intelligence", value: "int" },
         ]}
-        defaultFilter={["agi", "str", "int"]}
+        filter={["agi", "str", "int"]}
       />
     );
 
@@ -115,7 +113,7 @@ describe("FilterListbox workflow", () => {
           { label: "Pusher", value: "Pusher" },
           { label: "Support", value: "Support" },
         ]}
-        defaultFilter={[]}
+        filter={[]}
       />
     );
 
@@ -145,7 +143,7 @@ describe("FilterListbox workflow", () => {
           { label: "Strength", value: "str" },
           { label: "Intelligence", value: "int" },
         ]}
-        defaultFilter={["agi", "str", "int"]}
+        filter={["agi", "str", "int"]}
         callback={mockFilter}
       />
     );

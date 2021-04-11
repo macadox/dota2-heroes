@@ -99,7 +99,7 @@
   font-size: 1.4rem;
 }
 
-.filters__advanced {
+.btn-show {
   margin: 1em auto 0;
 }
 
@@ -228,7 +228,11 @@
   grid-row: 2/3;
 }
 
-.filters__advanced {
+.btn-reset {
+  width: max-content;
+}
+
+.btn-show {
   grid-row: 3/4;
 }
 
@@ -241,6 +245,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.65em;
+  align-items: flex-start;
 }
 
 .filters > * + * {
@@ -251,10 +256,5 @@
   .filters-wrap {
     max-width: 1024px;
     margin: 0 auto;
-  }
-
-  .filters__inner-center {
-    width: 100%;
-    align-items: flex-start;
   }
 }
