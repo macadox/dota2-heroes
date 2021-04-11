@@ -9,7 +9,7 @@ const SearchBar = ({ filterByName }) => {
 
   useEffect(() => {
     filterByName(term);
-  }, [term]);
+  }, [term]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>

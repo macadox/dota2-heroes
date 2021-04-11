@@ -107,7 +107,7 @@ const SortListbox = ({
     if (sortBy) {
       sortBy(value);
     }
-  }, [value]);
+  }, [value]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     document.addEventListener("click", handleClickOutside);

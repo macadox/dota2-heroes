@@ -7,17 +7,17 @@ const Item = ({ item, handlePosition, itemIds, items, CDN_URI }) => {
   const itemRef = useRef(null);
   const tooltipRef = useRef(null);
 
-  const showTooltip = () => {
-    setShow(true);
-    handlePosition(itemRef, tooltipRef);
-  };
-
-  const hideTooltip = () => {
-    setShow(false);
-  };
-
   useEffect(() => {
     const cur = itemRef.current;
+
+    const showTooltip = () => {
+      setShow(true);
+      handlePosition(itemRef, tooltipRef);
+    };
+
+    const hideTooltip = () => {
+      setShow(false);
+    };
 
     cur.addEventListener("mouseover", showTooltip);
     cur.addEventListener("mouseleave", hideTooltip);
@@ -32,7 +32,7 @@ const Item = ({ item, handlePosition, itemIds, items, CDN_URI }) => {
         cur.removeEventListener("focusout", hideTooltip);
       }
     };
-  }, []);
+  }, [handlePosition]);
 
   return (
     <div

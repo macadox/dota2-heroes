@@ -8,16 +8,17 @@ const Ability = ({ ability, handlePosition }) => {
   const abilityRef = useRef(null);
   const tooltipRef = useRef(null);
   const { CDN_URI } = useGlobalContext();
-  const showTooltip = () => {
-    setShow(true);
-    handlePosition(abilityRef, tooltipRef);
-  };
-
-  const hideTooltip = () => {
-    setShow(false);
-  };
 
   useEffect(() => {
+    const showTooltip = () => {
+      setShow(true);
+      handlePosition(abilityRef, tooltipRef);
+    };
+
+    const hideTooltip = () => {
+      setShow(false);
+    };
+
     let cur = abilityRef.current;
     cur.addEventListener("mouseover", showTooltip);
     cur.addEventListener("mouseleave", hideTooltip);
@@ -32,7 +33,7 @@ const Ability = ({ ability, handlePosition }) => {
         cur.removeEventListener("focusout", hideTooltip);
       }
     };
-  }, []);
+  }, [handlePosition]);
 
   return (
     <div

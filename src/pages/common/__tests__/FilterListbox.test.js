@@ -144,7 +144,7 @@ describe("FilterListbox workflow", () => {
           { label: "Intelligence", value: "int" },
         ]}
         filter={["agi", "str", "int"]}
-        callback={mockFilter}
+        filterBy={mockFilter}
       />
     );
 

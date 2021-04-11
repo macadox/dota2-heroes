@@ -4,7 +4,7 @@ import ListboxOption from "./ListboxOption";
 import keys from "../../utils/keys";
 import { FaCaretDown } from "react-icons/fa";
 
-const FilterListbox = ({ defaultText, options = [], callback, filter }) => {
+const FilterListbox = ({ defaultText, options = [], filterBy, filter }) => {
   const [values, setValues] = useState(filter);
   const [activeDescendant, setActiveDescendant] = useState(
     `elem_list_${options[0].value}`
@@ -89,10 +89,10 @@ const FilterListbox = ({ defaultText, options = [], callback, filter }) => {
   }, [filter]);
 
   useEffect(() => {
-    if (callback) {
-      callback(values);
+    if (filterBy) {
+      filterBy(values);
     }
-  }, [values]);
+  }, [values]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     setActiveDescendant(`elem_list_${options[activeIndex].value}`);

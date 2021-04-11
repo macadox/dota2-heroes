@@ -60,7 +60,7 @@ const HeroFilterPanel = () => {
                   { label: "Strength", value: "str" },
                   { label: "Intelligence", value: "int" },
                 ]}
-                callback={handleAttributeFilter}
+                filterBy={handleAttributeFilter}
                 filter={attributeFilter}
               />
               <FilterListbox
@@ -69,7 +69,7 @@ const HeroFilterPanel = () => {
                   { label: "Melee", value: "Melee" },
                   { label: "Ranged", value: "Ranged" },
                 ]}
-                callback={handleRangeFilter}
+                filterBy={handleRangeFilter}
                 filter={rangeFilter}
               />
               <FilterListbox
@@ -85,7 +85,7 @@ const HeroFilterPanel = () => {
                   { label: "Pusher", value: "Pusher" },
                   { label: "Support", value: "Support" },
                 ]}
-                callback={handleRoleFilter}
+                filterBy={handleRoleFilter}
                 filter={roleFilter}
               />
               <button className='btn btn-reset' onClick={resetFilters}>
