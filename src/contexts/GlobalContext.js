@@ -83,56 +83,38 @@ const reducer = (state, action) => {
 };
 
 export const AppProvider = ({ children }) => {
-  // const [nameFilter, setNameFilter] = useState("");
-  // const [attributeFilter, setAttributeFilter] = useState(["agi", "str", "int"]);
-  // const [rangeFilter, setRangeFilter] = useState(["Melee", "Ranged"]);
-  // const [roleFilter, setRoleFilter] = useState([]);
-  // const [sort, setSort] = useState("localized_name");
-  // const [reverse, setReverse] = useState(false);
-  // const [showFilters, setShowFilters] = useState(false);
   const [state, dispatch] = useReducer(reducer, initialState);
   const [loading, data] = useFetch(resources);
 
   const filterByName = (value) => {
-    // setNameFilter(value);
     dispatch({ type: "FILTER_BY_NAME", payload: value });
   };
 
   const handleSort = (value) => {
-    // setSort(value);
     dispatch({ type: "SORT_BY", payload: value });
   };
 
   const handleAttributeFilter = (values) => {
-    // setAttributeFilter(values);
     dispatch({ type: "FILTER_BY_ATTRIBUTE", payload: values });
   };
 
   const handleRangeFilter = (values) => {
-    // setRangeFilter(values);
     dispatch({ type: "FILTER_BY_RANGE", payload: values });
   };
 
   const handleRoleFilter = (values) => {
-    // setRoleFilter(values);
     dispatch({ type: "FILTER_BY_ROLE", payload: values });
   };
 
   const handleReverse = (bool) => {
-    // setReverse(bool);
     dispatch({ type: "SORT_REVERSE", payload: bool });
   };
 
   const toggleFilters = () => {
-    // setShowFilters(!showFilters);
     dispatch({ type: "FILTER_TOGGLE" });
   };
 
   const resetFilters = () => {
-    // setAttributeFilter(["agi", "str", "int"]);
-    // setRangeFilter(["Melee", "Ranged"]);
-    // setRoleFilter([]);
-    // setNameFilter("");
     dispatch({ type: "FILTER_RESET" });
   };
 
